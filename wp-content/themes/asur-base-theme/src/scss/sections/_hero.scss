@@ -1,0 +1,75 @@
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  color: $light;
+
+  .overlay {
+    z-index: 0;
+  }
+
+  .z-1 {
+    z-index: 3;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 10;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  h1,
+  p {
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  p {
+    font-weight: 100 !important;
+    @extend .fs-2;
+  }
+
+  .btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover {
+      background-color: darken($primary, 7%);
+      border-color: darken($primary, 7%);
+    }
+  }
+
+  .btn-outline-light {
+    color: $light;
+    border-color: $light;
+    &:hover {
+      background-color: $light;
+      color: $dark;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-zoom {
+    animation: heroZoomIn 10s ease-out forwards;
+    background-size: 105%;
+
+    @keyframes heroZoomIn {
+      0% {
+        background-size: 110%;
+      }
+      100% {
+        background-size: 100%;
+      }
+    }
+  }
+}

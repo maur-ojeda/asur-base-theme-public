@@ -1,0 +1,53 @@
+#services {
+  @extend .py-10;
+  @extend .bg-white;
+  @extend .border-bottom;
+
+  h1 {
+    @extend .text-primary;
+    @extend .fw-bold;
+  }
+
+  .intro-section-services {
+    @extend .text-center;
+    h1 {
+      @extend .text-primary;
+      @extend .display-3;
+    }
+    p {
+      @extend .mb-10;
+      @extend .fs-4;
+      @extend .text-muted;
+    }
+  }
+
+  .service-item {
+    @extend .d-flex;
+    @extend .mt-3;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    svg {
+      @extend .me-2;
+      @extend .text-dark;
+      width: 24px;
+      height: 24px;
+    }
+    h5 {
+      @extend .text-dark;
+    }
+    p {
+      @extend .small;
+      @extend .text-muted;
+    }
+    &:hover {
+      @extend .ps-3;
+      h5,
+      svg {
+        @extend .text-primary;
+      }
+      p {
+        @extend .text-dark;
+      }
+    }
+  }
+}

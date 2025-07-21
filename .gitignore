@@ -1,0 +1,40 @@
+# Archivos de configuración sensibles
+.env
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de logs y temporales de Docker/editores
+*.log
+.vscode/
+
+# Dependencias de Node.js (si las usas para compilar assets)
+node_modules/
+dist/
+build/
+
+# Contenido de WordPress que no es tuyo
+# Ignoramos todo wp-content por defecto...
+/wp-content/*
+
+# ...y luego permitimos explícitamente lo que SÍ queremos versionar.
+# ¡IMPORTANTE! Esto mantiene tu tema y tus plugins personalizados.
+!/wp-content/themes/
+!/wp-content/plugins/
+
+# Ignoramos los temas y plugins que vienen por defecto con WordPress o que se instalan desde el market, excepto los nuestros.
+/wp-content/themes/*
+!/wp-content/themes/asur-base-theme/
+
+/wp-content/plugins/*
+!/wp-content/plugins/advanced-custom-fields/
+
+# Ignorar la carpeta de subidas (uploads)
+/wp-content/uploads/
+
+# Ignorar la carpeta de caché o actualizaciones
+/wp-content/upgrade/
+/wp-content/cache/
+/brisk
+
