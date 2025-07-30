@@ -34,6 +34,9 @@ Este entorno Docker provee una instalación lista para desarrollo local de WordP
 ### Variables de entorno (archivo `.env`)
 
 ```env
+# Nombre del proyecto para Docker (prefijo de los contenedores)
+COMPOSE_PROJECT_NAME=la-aldea
+
 WORDPRESS_PORT=81
 MYSQL_PORT=33061
 ´´´

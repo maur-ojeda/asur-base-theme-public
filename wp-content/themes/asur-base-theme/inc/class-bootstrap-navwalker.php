@@ -69,13 +69,27 @@ class Bootstrap_5_Walker_Nav_Menu extends Walker_Nav_menu {
             }
         }
 
-        $title = apply_filters('the_title', $item->title, $item->ID);
-        $item_output = $args->before;
-        $item_output .= "<a$attributes>";
-        $item_output .= $args->link_before . $title . $args->link_after;
-        $item_output .= '</a>';
-        $item_output .= $args->after;
+      $title = apply_filters('the_title', $item->title, $item->ID);
 
-        $output .= $item_output;
+// Si $args no es objeto, crea uno vacío para evitar errores
+if (!is_object($args)) {
+    $args = (object) [];
+}
+
+// Definir valores por defecto si no existen
+$args->before = $args->before ?? '';
+$args->after = $args->after ?? '';
+$args->link_before = $args->link_before ?? '';
+$args->link_after = $args->link_after ?? '';
+
+// Output del ítem del menú
+$item_output  = $args->before;
+$item_output .= "<a$attributes>";
+$item_output .= $args->link_before . $title . $args->link_after;
+$item_output .= '</a>';
+$item_output .= $args->after;
+
+$output .= $item_output;
+     
     }
 }

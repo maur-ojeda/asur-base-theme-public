@@ -1,6 +1,7 @@
 <?php
-require_once get_template_directory() . '/inc/class-bootstrap-navwalker.php';
 use Carbon_Fields\Carbon_Fields;
+require_once get_template_directory() . '/inc/class-bootstrap-navwalker.php';
+
 
 // Cargar Carbon Fields
 $autoload = __DIR__ . '/vendor/autoload.php';
@@ -8,6 +9,16 @@ if (file_exists($autoload)) {
     require_once $autoload;
     Carbon_Fields::boot();
 }
+
+
+add_action('carbon_fields_register_fields', function () {
+    \Carbon_Fields\Container\Container::make('post_meta', 'Campo de Prueba')
+        ->where('post_type', '=', 'post')
+        ->add_fields([
+            \Carbon_Fields\Field\Field::make('text', 'campo_test', 'Texto de prueba'),
+        ]);
+});
+
 
 // Activar características del theme
 function asur_theme_setup() {

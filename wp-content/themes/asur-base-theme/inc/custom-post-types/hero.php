@@ -20,7 +20,7 @@ function asur_register_cpt_hero() {
         'show_in_menu' => true,
         'capability_type' => 'post',
         'hierarchical' => false,
-        'supports' => ['title', 'editor', 'thumbnail'],
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
         'menu_position' => 20,
         'menu_icon' => 'dashicons-format-image',
     ];
