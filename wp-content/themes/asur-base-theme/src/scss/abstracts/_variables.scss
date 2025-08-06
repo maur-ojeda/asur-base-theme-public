@@ -2,15 +2,18 @@
 // Tipografías
 $font-primary: "Inter", sans-serif;
 $font-secondary: "Arimo", sans-serif;
+$fs-xxs: 0.625rem;
+$fs-xs: 0.75rem;
 
 // Colores base
 $body-bg: #fff; // Fondo base claro
 $body-color: #6d7278; // Texto principal
+$body-color-title: #212529;
 
-$primary: #198754; // Vino profundo
-$secondary: #991915; // Vino brillante
-$success: #51664f; // Verde terroso
-$danger: #dd0b3a; // Rojo intenso
+$primary: #198754;
+$secondary: #991915;
+$success: #198754;
+$danger: #dd0b3a;
 $light: #ede3d6;
 $dark: #4d2e1e;
 

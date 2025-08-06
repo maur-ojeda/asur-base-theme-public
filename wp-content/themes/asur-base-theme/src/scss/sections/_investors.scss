@@ -1,0 +1,27 @@
+#investors {
+  @extend .py-10;
+  .service-card {
+    @extend .position-relative;
+    @extend .card;
+    min-height: 350px;
+    border: 0;
+    background-size: cover !important;
+    background-position: top left;
+    background-repeat: no-repeat;
+  }
+  .card-body {
+    @extend .position-absolute;
+    border-radius: 0 0.375rem 0 0;
+    max-width: 75%;
+    background: #fff;
+    top: 70%;
+    left: 0;
+    h6 {
+      @extend .text-primary;
+      @extend .fw-semibold;
+    }
+    p {
+      @extend .fs-xs!optional;
+    }
+  }
+}

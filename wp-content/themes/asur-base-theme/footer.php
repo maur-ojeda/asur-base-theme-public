@@ -4,8 +4,7 @@
  *
  * Contains the closing of the main content div and all content after.
  *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials *
  * @package asur-base-theme
  */
 ?>
@@ -23,9 +22,9 @@ $footer_settings_query = new WP_Query([
 // Valores por defecto como fallback
 $footer_bg_image = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80';
 $social_links    = [];
-$contact_phone   = '+56 9 1234 5678';
-$contact_email   = 'contacto@saboresdeChile.cl';
-$contact_address = 'Santiago, Chile';
+$contact_phone   = '+56 0 0000 0000';
+$contact_email   = 'contacto@contacto.cl';
+$contact_address = 'Lugar, Pais';
 $link_sections   = [];
 
 if ($footer_settings_query->have_posts()) {
@@ -44,12 +43,10 @@ if ($footer_settings_query->have_posts()) {
 }
 ?>
  
-</main><!-- Cierra la etiqueta <main> abierta en las plantillas de página o header.php -->
+</main>
 <footer class="footer">
     <div class="footer-bg">
-        <?php
-        // La variable $footer_bg_image ahora es dinámica
-        ?>
+        
         <img src="<?php echo ensure_https($footer_bg_image); ?>" alt="Footer background" class="footer-bg-img">
         <div class="footer-overlay"></div>
     </div>

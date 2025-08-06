@@ -19,12 +19,48 @@ if ($contact_query->have_posts()) :
 
 <?php if ($is_visible) : ?>
 
-    <section id="contact" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . '/dist/images/bg-02.jpg'); ?>'); background-size:contain; background-position: top center;">
-        <div class="container">            
-            <div class="intro-section" data-aos="fade" data-aos-delay="200">
+    <section id="contact">
+        
+    
+    <div class="container" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . '/dist/images/bg-contact-la-aldea.png'); ?>'); background-size:cover; background-position: top bottom; background-repeat: no-repeat;">            
+           
+        
+<div class="row">
+    <div class="col-md-6 col-12">
+        <div class="card bg-white shadow-lg">
+            <div class="card-body">
+    
+                <?php echo do_shortcode('[contact_form id="47"]');?>
+            
+    
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="offset-1  col-5 bg-info">msndjshj</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="intro-section" data-aos="fade" data-aos-delay="200">
                         <h1><?= esc_html($title); ?></h1>
                         <p><?= esc_html(strip_tags($desc)); ?></p>
-            </div>
+        </div>
             <div class="row">
                 <div class="col-md-6">
                     

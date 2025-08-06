@@ -1,0 +1,54 @@
+#projects {
+  @extend .py-10;
+  .project {
+    .section-tag {
+      @extend .text-primary;
+      @extend .fw-semibold;
+    }
+    .section-title {
+      @extend .display-6;
+    }
+    .section-description {
+      @extend .text-muted;
+    }
+
+    .project-wrapper {
+      @extend .d-block;
+      @extend .w-100;
+      @extend .h-100;
+      @extend .text-decoration-none;
+      .project-image-container {
+        @extend .position-relative;
+        @extend .rounded;
+        @extend .overflow-hidden;
+        @extend .w-100;
+        @extend .h-100;
+        transition: all 0.75s cubic-bezier(0, 0, 0.2, 1);
+        .project-image {
+          @extend .img-fluid;
+          @extend .rounded;
+          object-fit: cover;
+          transition: all 0.75s cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+      .project-info {
+        @extend .mt-2;
+        h6 {
+        }
+        p {
+          @extend .text-muted;
+          @extend .fs-6;
+          @extend .mt-2;
+        }
+      }
+      &:hover {
+        .project-image-container {
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+        .project-image {
+          transform: scale(1.25);
+        }
+      }
+    }
+  }
+}

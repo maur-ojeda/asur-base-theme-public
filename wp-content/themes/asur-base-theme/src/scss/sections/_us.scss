@@ -1,0 +1,9 @@
+#us {
+  @extend .py-10;
+  .intro-section {
+    h2 {
+      @extend .display-4;
+      color: $body-color-title;
+    }
+  }
+}

@@ -12,7 +12,7 @@ function asur_register_footer_settings_cpt() {
         'menu_name'             => _x( 'Ajustes de Footer', 'Admin Menu text', 'asur-base-theme' ),
         'add_new_item'          => __( 'Añadir Nuevo Ajuste', 'asur-base-theme' ),
         'edit_item'             => __( 'Editar Ajuste', 'asur-base-theme' ),
-        'all_items'             => __( 'Todos los Ajustes', 'asur-base-theme' ),
+        'all_items'             => __( 'Ajustes de Footer', 'asur-base-theme' ),
     );
 
     $args = array(
@@ -27,6 +27,8 @@ function asur_register_footer_settings_cpt() {
         'hierarchical'       => false,
         'menu_icon'          => 'dashicons-admin-settings',
         'supports'           => array( 'title' ),
+        'show_in_menu' => 'cpt',
+        'menu_position' => 5, // 5-100
     );
 
     register_post_type( 'footer_settings', $args );

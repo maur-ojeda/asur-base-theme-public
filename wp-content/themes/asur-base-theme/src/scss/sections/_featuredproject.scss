@@ -1,0 +1,26 @@
+#featured-proyect {
+  @extend .py-10;
+
+  .imagen-principal {
+    @extend .rounded;
+    width: 100%;
+    min-height: 750px;
+    object-fit: cover;
+  }
+
+  .imagen-container {
+    @extend .position-relative;
+    .info-overlay {
+      @extend .fs-xs;
+      @extend .bg-primary;
+      @extend .text-white;
+      @extend .p-3;
+      @extend .rounded;
+      @extend .position-absolute;
+      @extend .top-75;
+      @extend .start-0;
+      @extend .translate-middle;
+      max-width: 250px;
+    }
+  }
+}

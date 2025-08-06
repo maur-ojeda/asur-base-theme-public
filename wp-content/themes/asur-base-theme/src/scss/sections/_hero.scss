@@ -52,8 +52,9 @@
     color: $light;
     border-color: $light;
     &:hover {
-      background-color: $light;
-      color: $dark;
+      background-color: transparent;
+      border-color: $primary;
+      color: $primary;
     }
   }
 }
@@ -72,4 +73,9 @@
       }
     }
   }
+}
+
+.hvr-underline-from-left:before {
+  background: $primary !important;
+  height: 1px !important;
 }

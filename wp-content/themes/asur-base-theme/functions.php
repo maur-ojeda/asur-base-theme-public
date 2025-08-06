@@ -1,6 +1,7 @@
 <?php
 use Carbon_Fields\Carbon_Fields;
 require_once get_template_directory() . '/inc/class-bootstrap-navwalker.php';
+require_once get_template_directory() . '/inc/shortcodes/contact-form.php';
 
 
 // Cargar Carbon Fields
@@ -9,15 +10,6 @@ if (file_exists($autoload)) {
     require_once $autoload;
     Carbon_Fields::boot();
 }
-
-
-add_action('carbon_fields_register_fields', function () {
-    \Carbon_Fields\Container\Container::make('post_meta', 'Campo de Prueba')
-        ->where('post_type', '=', 'post')
-        ->add_fields([
-            \Carbon_Fields\Field\Field::make('text', 'campo_test', 'Texto de prueba'),
-        ]);
-});
 
 
 // Activar características del theme
@@ -83,5 +75,20 @@ add_action('carbon_fields_register_fields', function () {
 });
 
 function ensure_https($url) {
-    return esc_url(set_url_scheme($url, 'https'));
+    //return esc_url(set_url_scheme($url, 'https'));
+    return esc_url(set_url_scheme($url, 'http'));
+
 }
+
+
+add_action('admin_menu', function () {
+    add_menu_page(
+        'CPT',           
+        'CPT',           
+        'edit_posts',          
+        'cpt',           
+        '',                    
+        'dashicons-category',  
+        5                      
+    );
+});

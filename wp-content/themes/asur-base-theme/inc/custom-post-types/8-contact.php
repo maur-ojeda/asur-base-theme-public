@@ -10,7 +10,7 @@ function register_cpt_contact() {
         'edit_item'          => 'Editar contacto',
         'new_item'           => 'Nuevo contacto',
         'view_item'          => 'Ver contacto',
-        'all_items'          => 'Todos los contactos',
+        'all_items'          => 'Contactos',
         'search_items'       => 'Buscar contacto',
         'not_found'          => 'No encontrado',
     );
@@ -25,6 +25,8 @@ function register_cpt_contact() {
         'supports'           => array('title', 'editor'),
         'has_archive'        => false,
         'show_in_rest'       => true,
+        'show_in_menu' => 'cpt',
+        'menu_position' => null, // 5-100
     );
 
     register_post_type('contact', $args);

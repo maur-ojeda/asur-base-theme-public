@@ -1,64 +1,54 @@
 <?php
-    $client_query = new WP_Query(array('post_type' => 'client','posts_per_page' => -1,));
+$client_query = new WP_Query([
+    'post_type'      => 'client',
+    'posts_per_page' => -1,
+]);
 
-    if ($client_query->have_posts()) :
-        while ($client_query->have_posts()) : $client_query->the_post();
-            $title = get_the_title();
-            $desc = get_the_content();
-            $clients = carbon_get_the_post_meta('clients');           
-            $is_visible = carbon_get_the_post_meta('is_visible');           
-            
-    ?>
 
-<?php if ($is_visible) : ?>
+$default_title = 'Nuestros Clientes';
+$default_desc = 'Estas son algunas de las empresas que confían en nosotros.';
+$default_logo = '';
+$default_client_name = 'Empresa Anónima';
+$default_client_text = 'Descripción no disponible.';
 
-    <pre class="theme-indicator">WIP :clients</pre> 
-<section id="clients">
-    <div class="container">
+if ($client_query->have_posts()) :
+    while ($client_query->have_posts()) : $client_query->the_post();
 
-       <div class="intro-section" data-aos="fade" data-aos-delay="200">
-                <h1><?= esc_html($title); ?></h1>
-                <p><?= esc_html(strip_tags($desc)); ?></p>
-        </div>
+        $title = get_the_title() ?: $default_title;
+        $desc = get_the_content() ?: $default_desc;
+        $clients = carbon_get_the_post_meta('clients') ?: [];
+        $is_visible = carbon_get_the_post_meta('is_visible');
 
-        <div class="row justify-content-center g-4">   
-            <?php
-            if ($clients):
-                foreach ($clients as $client):
-                    $clientName = esc_html($client['client_name']);
-                    $clientText = esc_html($client['client_text']);
-                    $clientLogo = esc_url($client['client_logo']);
-             ?>   
-        
-        
-            <div class="client-item" data-aos="fade-left" data-aos-delay="200">
-                <div>
-                        <?php if ($clientLogo): ?>
-                            <img src="<?php echo ensure_https($clientLogo); ?>" alt="Logo cliente">
-                        <?php endif; ?>    
-                        <?php if ($clientName): ?>
-                                <h4><?= esc_html($clientName); ?></h4>
-                        <?php endif; ?>
-                        <?php if ($clientText): ?>
-                            <p><?= esc_html($clientText); ?></p>                        
-                        <?php endif; ?>                
-                    </div>
+        if (!$is_visible) continue;
+        ?>
+
+        <section id="clients" class="py-5 bg-light">
+            <div class="container">
+                <div class="intro-section text-center mb-5" data-aos="fade" data-aos-delay="200">
+                    <h1><?= esc_html($title); ?></h1>
+                    <p class="lead"><?= esc_html(strip_tags($desc)); ?></p>
+                </div>
+
+                <div class="row justify-content-center g-4">
+                    <?php foreach ($clients as $client):
+                        $client_name = !empty($client['client_name']) ? esc_html($client['client_name']) : $default_client_name;
+                        $client_text = !empty($client['client_text']) ? esc_html($client['client_text']) : $default_client_text;
+                        $client_logo = !empty($client['client_logo']) ? esc_url($client['client_logo']) : $default_logo;
+                    ?>
+                        <div class="col-md-4 col-sm-6 client-item text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="p-4 bg-white shadow-sm h-100 rounded">
+                                <img src="<?= ensure_https($client_logo); ?>" alt="Logo de <?= esc_attr($client_name); ?>" class="img-fluid mb-3" style="max-height: 100px;">
+                                <h4><?= $client_name; ?></h4>
+                                <p class="small text-muted"><?= $client_text; ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
+        </section>
 
-        <?php endforeach; ?>
-  
-        
-        
-        </div>
-    </div>
-</section>
-
+    <?php endwhile;
+    wp_reset_postdata();
+else: ?>
+    <p class="text-center my-5">Aún no hay clientes cargados.</p>
 <?php endif; ?>
-
-<?php endif; ?>
-        <?php endwhile;
-                wp_reset_postdata();
-            else:
-                echo '<p class="text-center">Aún no hay logos cargados.</p>';
-            endif;
-            ?>

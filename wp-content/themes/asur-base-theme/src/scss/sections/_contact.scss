@@ -1,6 +1,5 @@
 #contact {
   @extend .py-10;
-  @extend .bg-primary;
 
   .intro-section {
     @extend .text-center;
@@ -21,8 +20,8 @@
       @extend .p-3;
       @extend .rounded-circle;
       @extend .border;
-      @extend .border-white;      
-      font-size: 0.9rem
+      @extend .border-white;
+      font-size: 0.9rem;
     }
     .content {
       @extend .ps-3;
@@ -34,34 +33,33 @@
   }
 
   .form {
-  .wpcf7-response-output{
-    border: none!important;
-    @extend .text-white;
-  }
+    .wpcf7-response-output {
+      border: none !important;
+      @extend .text-white;
+    }
 
     @extend .container;
     @extend .rounded;
     @extend .border;
     @extend .border-white;
     @extend .py-3;
-    
-    h2{
+
+    h2 {
       @extend .text-white;
-      @extend .mb-3
+      @extend .mb-3;
     }
 
     .wpcf7-form {
       @extend .row;
-      
+
       p {
         @extend .col-12;
       }
       @media (min-width: 768px) {
-          p {
-        @extend .col-md-6;
-          }         
+        p {
+          @extend .col-md-6;
         }
-
+      }
 
       label {
         @extend .w-100;
@@ -89,8 +87,6 @@
         @extend .btn-lg;
         @extend .w-100;
         @extend .border;
-        
-
       }
     }
   }

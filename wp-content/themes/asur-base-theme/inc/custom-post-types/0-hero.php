@@ -2,7 +2,7 @@
 function asur_register_cpt_hero() {
     $labels = [
         'name' => __('Heros', 'asur-base-theme'),
-        'singular_name' => __('Hero', 'asur-base-theme'),
+        'singular_name' => __('Heros', 'asur-base-theme'),
         'add_new' => __('Agregar Nuevo Hero', 'asur-base-theme'),
         'add_new_item' => __('Agregar Nuevo Hero', 'asur-base-theme'),
         'edit_item' => __('Editar Hero', 'asur-base-theme'),
@@ -20,9 +20,10 @@ function asur_register_cpt_hero() {
         'show_in_menu' => true,
         'capability_type' => 'post',
         'hierarchical' => false,
-        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
-        'menu_position' => 20,
+        'supports' => ['title', 'editor'],
         'menu_icon' => 'dashicons-format-image',
+        'show_in_menu' => 'cpt',
+    
     ];
 
     register_post_type('hero', $args);
