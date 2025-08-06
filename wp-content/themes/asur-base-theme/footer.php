@@ -45,13 +45,8 @@ if ($footer_settings_query->have_posts()) {
  
 </main>
 <footer class="footer">
-    <div class="footer-bg">
-        
-        <img src="<?php echo ensure_https($footer_bg_image); ?>" alt="Footer background" class="footer-bg-img">
-        <div class="footer-overlay"></div>
-    </div>
-    <div class="container">
-        <div class="footer-content">
+    <div class="container-fluid p-0">
+        <div class="footer-content container">
             <div class="footer-section main">
                 <div class="footer-logo">
                     <?php
@@ -74,10 +69,12 @@ if ($footer_settings_query->have_posts()) {
                         <span class="footer-logo-text"><?php bloginfo( 'name' ); ?></span>
                     <?php endif; ?>
                 </div>
-                <p class="footer-description">
+                <p class="footer-description pe-4">
                     <?php bloginfo('description'); // Usando la descripción del sitio como texto del footer ?>
                 </p>
                 <div class="footer-social">
+
+                
                     <?php if ( ! empty( $social_links ) ) : ?>
                         <?php foreach ( $social_links as $link ) : ?>
                             <a href="<?php echo esc_url( $link['social_url'] ); ?>" class="social-link" target="_blank" rel="noopener noreferrer">
@@ -126,8 +123,8 @@ if ($footer_settings_query->have_posts()) {
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos los derechos reservados.</p>
+        <div class="footer-bottom bg-success p-3 text-white">
+            <p class="m-0">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos los derechos reservados.</p>
         </div>
     </div>
 </footer>

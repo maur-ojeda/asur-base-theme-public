@@ -13,7 +13,7 @@ use Carbon_Fields\Field;
             ->set_width(50)
             ->set_help_text('Marca esta casilla para que la sección sea visible en la página.'),
             Field::make('text', 'contact_shortcode', 'Shortcode de formulario de contacto')
-                ->set_help_text('Pega aquí el shortcode del plugin de contacto.'),
+                ->set_help_text('Pega aquí el shortcode del plugin de contacto. [contact_form id="00"]'),
 
             Field::make('text', 'over_title', 'Sobre título'),
                 
@@ -33,5 +33,18 @@ use Carbon_Fields\Field;
                           Field::make('text', 'contact_url', 'Enlace')
                         ->set_required(true),
                 ]),
+
+
+
+   Field::make('complex', 'contact_items_social', 'Redes sociales')
+                ->set_layout('tabbed-horizontal')
+                ->set_duplicate_groups_allowed(true)
+                ->add_fields([
+                    Field::make('text', 'social_icon', 'Ícono Lucide')
+                        ->set_required(true)
+                        ->set_help_text('Nombre del ícono Lucide, sin el prefijo (ej: chef-hat)'),
+                          Field::make('text', 'social_url', 'Enlace')
+                        ->set_required(true),
+                ]),                
         ]);
 

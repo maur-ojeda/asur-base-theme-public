@@ -20,6 +20,6 @@ $default_image_features = 'https://placehold.co/350x400.png';
     <?php get_template_part('template-parts/section', 'projects');  ?>
     <?php  get_template_part('template-parts/section', 'contact'); ?>
  <?php //revisar ancho  ?>
-    </main>
+</main>
 
 <?php get_footer(); ?>
