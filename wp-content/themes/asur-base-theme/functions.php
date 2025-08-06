@@ -2,7 +2,7 @@
 use Carbon_Fields\Carbon_Fields;
 require_once get_template_directory() . '/inc/class-bootstrap-navwalker.php';
 require_once get_template_directory() . '/inc/shortcodes/contact-form.php';
-
+require_once get_template_directory() . '/inc/ajax/contact-form-handler.php';
 
 // Cargar Carbon Fields
 $autoload = __DIR__ . '/vendor/autoload.php';
@@ -10,7 +10,6 @@ if (file_exists($autoload)) {
     require_once $autoload;
     Carbon_Fields::boot();
 }
-
 
 // Activar características del theme
 function asur_theme_setup() {
@@ -57,8 +56,6 @@ add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_t
     return $use_block_editor;
 }, 10, 2);
 
-
-
 // Encolar scripts y estilos
 require_once get_template_directory() . '/inc/enqueue.php';
 
@@ -79,7 +76,6 @@ function ensure_https($url) {
     return esc_url(set_url_scheme($url, 'http'));
 
 }
-
 
 add_action('admin_menu', function () {
     add_menu_page(

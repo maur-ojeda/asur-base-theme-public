@@ -14,6 +14,11 @@ use Carbon_Fields\Field;
             ->set_help_text('Marca esta casilla para que la sección sea visible en la página.'),
             Field::make('text', 'contact_shortcode', 'Shortcode de formulario de contacto')
                 ->set_help_text('Pega aquí el shortcode del plugin de contacto.'),
+
+            Field::make('text', 'over_title', 'Sobre título'),
+                
+                
+
             Field::make('complex', 'contact_items', 'Formas de contacto')
                 ->set_layout('tabbed-horizontal')
                 ->set_duplicate_groups_allowed(true)

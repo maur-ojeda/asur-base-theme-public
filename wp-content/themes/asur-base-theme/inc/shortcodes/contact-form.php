@@ -36,8 +36,9 @@ function render_contact_form_shortcode($atts) {
             </div>
         <?php endforeach; ?>
 
-        <button type="submit" class="btn btn-primary"><?= esc_html($submit_text); ?></button>
-
+        <button type="submit" class="btn btn-primary rounded-pill hvr-icon-wobble-horizontal">        
+        
+        <?= esc_html($submit_text); ?> <i class="hvr-icon" data-lucide="chevron-right"></i></button>
         <div class="form-response mt-2" style="display: none;"></div>
     </form>
 

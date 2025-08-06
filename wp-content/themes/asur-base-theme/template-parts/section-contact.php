@@ -11,7 +11,8 @@ $contact_query = new WP_Query($args);
 if ($contact_query->have_posts()) :
     while ($contact_query->have_posts()) : $contact_query->the_post();
         $title = get_the_title();
-        $desc = get_the_content();
+        $overtitle = carbon_get_the_post_meta('overtitle');                      
+        $content = get_the_content();
         $items = carbon_get_the_post_meta('contact_items');           
         $shortcode = carbon_get_the_post_meta('contact_shortcode');
         $is_visible = carbon_get_the_post_meta('is_visible');                      
@@ -22,22 +23,35 @@ if ($contact_query->have_posts()) :
     <section id="contact">
         
     
-    <div class="container" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . '/dist/images/bg-contact-la-aldea.png'); ?>'); background-size:cover; background-position: top bottom; background-repeat: no-repeat;">            
+    <div class="container" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . '/dist/images/bg-contact-la-aldea.png'); ?>'); 
+    background-size: 100%;
+     background-position: bottom left; 
+     background-repeat: no-repeat;">            
            
         
 <div class="row">
     <div class="col-md-6 col-12">
-        <div class="card bg-white shadow-lg">
-            <div class="card-body">
-    
+        <div class="card bg-white shadow-lg" style="margin-bottom:4rem;">
+            <div class="card-body p-5 mb-3">
+
+            
+
                 <?php echo do_shortcode('[contact_form id="47"]');?>
             
     
             </div>
         </div>
     </div>
+    <div class="offset-1 col-5 contact-info-wrapper">
+        <div class="contact-info">
+            <h6 class="fw-semibold text-white" data-aos="fade" data-aos-delay="800"><?php echo esc_html($overtitle); ?></h6>
+            <h3 class="display-6 mb-3 text-white" data-aos="fade-up"><?php echo esc_html($title); ?></h3>
+            <p class=" text-white"><?php echo esc_html($content); ?></p>
+
+        </div>
     </div>
-    <div class="offset-1  col-5 bg-info">msndjshj</div>
+    </div>
+    
 
 </div>
 

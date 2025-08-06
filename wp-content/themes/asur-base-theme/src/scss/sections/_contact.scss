@@ -1,6 +1,16 @@
 #contact {
   @extend .py-10;
 
+  .contact-info-wrapper {
+    @extend .position-relative;
+    .contact-info {
+      @extend .position-absolute;
+      @extend .top-25;
+      @extend .pe-4;
+      //@extend .start-50;
+    }
+  }
+
   .intro-section {
     @extend .text-center;
     @extend .text-white;
