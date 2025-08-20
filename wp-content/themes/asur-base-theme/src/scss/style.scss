@@ -1,12 +1,17 @@
 @import "abstracts/variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/hover.css/scss/hover.scss";
+@import "helpers/helpers";
 @import "base/typography";
-@import "helpers/spacing";
+@import "base/base";
+
 @import "layout/header";
 @import "layout/footer";
+
 @import "sections/hero";
-@import "sections/us";
+@import "sections/info-block";
+
+/*@import "sections/us";
 @import "sections/calltoaction";
 @import "sections/investors";
 @import "sections/featuredproject";
@@ -18,7 +23,7 @@
 @import "sections/clients";
 @import "sections/testimonial";
 @import "sections/contact";
-
+*/
 .theme-indicator {
   @extend .d-none;
   background-color: black;

@@ -1,0 +1,52 @@
+.info-block {
+  //margin-top: 7.5rem;
+
+  .title {
+    @extend .mb-7;
+  }
+
+  .over-title {
+    margin-top: 2.5rem;
+  }
+
+  .img-krom-wrapper {
+    position: relative;
+    box-sizing: content-box;
+    &::after {
+      content: "";
+      @extend .d-block;
+      @extend .z-1;
+      background-color: $primary;
+      position: absolute;
+      border-radius: 0.125rem;
+    }
+  }
+
+  .img-krom-wrapper {
+    &.type-1 {
+      &::after {
+        top: 15%;
+        left: -1.25rem;
+        width: 2.5rem;
+        height: 45%;
+      }
+    }
+    &.type-2 {
+      &::after {
+        top: 15%;
+        right: -1.25rem;
+        width: 2.5rem;
+        height: 45%;
+      }
+    }
+
+    &.type-3 {
+      &::after {
+        top: -1.25rem;
+        right: -1.25rem;
+        width: 45%;
+        height: 2.5rem;
+      }
+    }
+  }
+}

@@ -12,8 +12,12 @@ $default_image_features = 'https://placehold.co/350x400.png';
 
 <main id="main-content d-none">
     <?php get_template_part('template-parts/section', 'hero');  ?>
-    <?php get_template_part('template-parts/section', 'us');  ?>
+    <?php get_template_part('template-parts/section', 'info-block');  ?>
     <?php get_template_part('template-parts/section', 'call-to-action');  ?>
+
+
+
+
     <?php get_template_part('template-parts/section', 'investors');  ?>
     <?php //revisar ancho  ?>
     <?php get_template_part('template-parts/section', 'featured-project');  ?>

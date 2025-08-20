@@ -38,3 +38,7 @@ build/
 /wp-content/cache/
 /brisk
 
+
+/vendor/
+/composer.lock
+x

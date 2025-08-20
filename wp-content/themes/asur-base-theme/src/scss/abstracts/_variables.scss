@@ -1,23 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 // Tipografías
-$font-primary: "Inter", sans-serif;
-$font-secondary: "Arimo", sans-serif;
+$font-primary: "Source Sans 3", sans-serif;
+$font-secondary: "Inter", sans-serif;
+
 $fs-xxs: 0.625rem;
 $fs-xs: 0.75rem;
 
 // Colores base
-$body-bg: #fff; // Fondo base claro
-$body-color: #6d7278; // Texto principal
-$body-color-title: #212529;
+$body-bg: #fbfbfb;
+$body-color: #000;
+$body-color-title: #162944;
 
-$primary: #198754;
-$secondary: #0e492d;
-$success: #198754;
+$primary: #ee5135;
+$secondary: #666;
+
 $light: #ffffff;
 $dark: #212529;
 
 // Componentes
 $link-color: $primary;
-$link-hover-color: darken($primary, 10%);
-$btn-border-radius: 0.5rem;
+$link-hover-color: darken($primary, 20%);
+
+$btn-border-radius: 0.375rem;
+
 $btn-font-weight: 500;
+
+$image-border-radius: 0.25rem;

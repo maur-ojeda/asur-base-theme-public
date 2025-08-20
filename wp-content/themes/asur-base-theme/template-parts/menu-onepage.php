@@ -1,3 +1,12 @@
+
+<?php
+
+$wsp = carbon_get_theme_option('projects_section_is_visible');
+
+
+?>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent transition-navbar py-3">
   <div class="container" data-aos="fade-up" 
                         data-aos-delay="400">

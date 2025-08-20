@@ -16,6 +16,7 @@ function register_cpt_service() {
         ),
         'public' => true,
         'has_archive' => false,
+        'show_in_menu' => 'cpt',
         'menu_icon' => 'dashicons-hammer',
         'supports' => array('title', 'editor', 'page-attributes'),
         'show_in_rest' => true,

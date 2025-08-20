@@ -22,3 +22,24 @@
 .origin-center {
   transform-origin: center;
 }
+
+.fs-sm {
+  font-size: 0.875rem; /* 14px */
+}
+
+.fs-6-5 {
+  font-size: 1.125rem; /* 18px */
+}
+
+.hvr-radial-out {
+  background: $primary;
+  border: none;
+  &:before {
+    background: darken($primary, 20%);
+    border: none;
+  }
+}
+
+.offset-lg-05 {
+  margin-left: 3.333333%;
+}

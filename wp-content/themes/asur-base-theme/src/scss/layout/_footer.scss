@@ -1,19 +1,12 @@
-// Define variables for colors
-$footer-bg-color: #fff;
+$block: "footer";
 
-$footer-link-color: #ffffff;
-$footer-link-hover-color: $primary;
-$footer-overlay-color: rgba(0, 0, 0, 0.7);
-$footer-border-color: #444444;
-$footer-title-color: #ffffff;
-
-.footer {
-  background-color: $footer-bg-color;
+.#{$block} {
+  background-color: $body-bg;
   @extend .text-muted;
   position: relative;
   overflow: hidden; // Ensures background image doesn't overflow
 
-  .footer-bg {
+  &-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,7 +14,7 @@ $footer-title-color: #ffffff;
     height: 100%;
     z-index: 0; // Behind content
 
-    .footer-bg-img {
+    &-bg-img {
       width: 100%;
       height: 100%;
       object-fit: cover; // Cover the entire area
@@ -29,13 +22,13 @@ $footer-title-color: #ffffff;
       transform: translateY(0) !important; // Override inline style if present
     }
 
-    .footer-overlay {
+    &-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: $footer-overlay-color;
+      background-color: $body-bg;
     }
   }
 
@@ -47,7 +40,7 @@ $footer-title-color: #ffffff;
     padding: 0 20px;
   }
 
-  .footer-content {
+  &-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -61,7 +54,7 @@ $footer-title-color: #ffffff;
     }
   }
 
-  .footer-section {
+  &-section {
     flex: 1;
     min-width: 250px; // Minimum width for sections
     max-width: 30%; // Max width to allow wrapping
@@ -79,22 +72,22 @@ $footer-title-color: #ffffff;
     }
   }
 
-  .footer-logo {
+  &-logo {
     margin-bottom: 20px;
 
-    .footer-logo-img {
+    &-logo-img {
       max-width: 180px; // Adjust logo size as needed
       height: auto;
     }
   }
 
-  .footer-description {
+  &-description {
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 20px;
   }
 
-  .footer-social {
+  &-social {
     display: flex;
     gap: 15px;
     @media (max-width: 768px) {
@@ -106,7 +99,7 @@ $footer-title-color: #ffffff;
       transition: color 0.3s ease;
 
       &:hover {
-        color: $footer-link-hover-color;
+        color: $primary;
       }
 
       svg {
@@ -116,7 +109,7 @@ $footer-title-color: #ffffff;
     }
   }
 
-  .footer-title {
+  &-title {
     font-size: 18px;
     color: $dark;
     margin-bottom: 20px;
@@ -127,7 +120,7 @@ $footer-title-color: #ffffff;
     }
   }
 
-  .footer-list {
+  &-list {
     @extend .text-primary;
     list-style: none;
     padding: 0;
@@ -157,7 +150,7 @@ $footer-title-color: #ffffff;
     }
   }
 
-  .footer-bottom {
+  &-bottom {
     text-align: center;
     padding-top: 30px;
     font-size: 14px;
