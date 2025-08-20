@@ -25,7 +25,6 @@ $block: "hero";
     @extend .start-0;
     @extend .z-1;
     img {
-      // @extend .img-fluid;
       width: 100%;
       object-fit: cover;
     }
@@ -43,8 +42,9 @@ $block: "hero";
       @extend .text-uppercase;
       @extend .fw-semibold;
       // Desktop (por defecto)
-      font-size: 9.375rem;
-      margin-bottom: -20px;
+      font-size: 6.25rem;
+      margin-bottom: -0.75rem;
+
       // Tablet (md y lg)
       @include media-breakpoint-down(xl) {
         font-size: 3rem;
@@ -58,7 +58,7 @@ $block: "hero";
 }
 
 .#{$block}.inner {
-  height: 635px;
+  height: 640px;
 
   // Tablet
   @include media-breakpoint-down(lg) {

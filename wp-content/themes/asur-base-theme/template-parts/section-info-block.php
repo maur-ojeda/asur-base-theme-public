@@ -2,19 +2,28 @@
 // vars for mock data
 /*
 typo-1: texto izquierda, imagen derecha
-typo-2: texto derecha, imagen izquierda
+typo-2: texto derecha, imagen izquierda, adorno izquierda
+typo-3: texto derecha, imagen izquierda, adorno arriba
+typo-4: texto derecha, imagen izquierda, sin adorno
+typo-5: texto derecha, imagen izquierda, adorno arriba 
+
 */
 
 
 $title = 'KROM INDUSTRY';
 $content = 'Estamos preparados para ser el socio estratégico que su industria necesita, entregamos soluciones integrales en ingeniería, asesoría técnica y suministro de equipos, con un servicio especializado de excelencia apoyado en una sólida red de clase mundial.';
-$overTitle = '';
-$usImage = 'https://placehold.co/620x570@2x.png';
+$overTitle = 'sndmsjdhsjdhj';
+$image = 'https://placehold.co/620x570@2x.png';
 $btnUrl = '';
 $btnText = 'Ver más';
 $icon = 'arrow-right';
 
-$type = "type-3";
+$extraTitle = 'PRESENCIA EN FERIAS INTERNACIONALES';
+$extraOverTitle = 'EXTENSION Y COMUNICACIONES';
+
+
+
+$type = "type-6";
 
 if( $type == "type-1"){
   $order = 'order-last'; 
@@ -25,6 +34,18 @@ if( $type == "type-2"){
 
 if( $type == "type-3"){
   $order = 'order-last';  
+}
+
+if( $type == "type-4"){
+  $order = 'order-last';  
+}
+
+if( $type == "type-5"){
+  $order = 'order-first';  
+}
+
+if( $type == "type-6"){
+  //$order = 'order-first';  
 }
 
 
@@ -84,6 +105,8 @@ if ($us->have_posts()) : ?>
         
     <div class="col-md-4 p-0" data-aos="fade-right"><img class="img-krom" src="<?php echo esc_url(ensure_https($usImage)); ?>" alt=""></div>
     <!-- Detalles -->
+
+
     <div class="col ms-md-5">
       <div data-aos="fade" data-aos-delay="200">
         <h6 class="over-title" data-aos="fade" data-aos-delay="800"><?= esc_html($overUsTitle); ?></h6>
@@ -104,15 +127,30 @@ if ($us->have_posts()) : ?>
 
 <section class="info-block">
     <div class="container-fluid mt-5">
+
+
+<?php if ($extraTitle && $extraOverTitle): ?>
+  <div class="row mb-20">
+    <div class="col-12 offset-md-1 col-md-10" data-aos="fade" data-aos-delay="100" >
+        <h6 class="over-title"><?= esc_html($extraOverTitle); ?></h6>
+        <h2 class="title" ><?= esc_html($extraTitle); ?></h2>
+    </div>
+  </div>
+<?php endif; ?>
+
+
+
         <div class="row">
+
+        <?php if ($type != "type-6"): ?>
             <div class="col-12 offset-md-1 col-md-4 <?= esc_attr($order);?>" data-aos="fade-right">
                 <div class="img-krom-wrapper <?= esc_attr($type);?>">
-                  <img class="img-krom <?= esc_attr($order);?>" src="<?php echo esc_url(ensure_https($usImage)); ?>" alt="">
+                  <img class="img-krom <?= esc_attr($order);?>" src="<?php echo esc_url(ensure_https($image)); ?>" alt="">
                 </div>
             </div>
+        <?php endif; ?>    
             
-            <div class="col-12 offset-md-1 col-md-5">
-                
+            <div class=" offset-md-1 col">
                     <?php if ($overTitle): ?>  
                       <h6 class="over-title" data-aos="fade-up" data-aos-delay="200"><?= esc_html($overTitle); ?></h6>
                     <?php endif; ?>

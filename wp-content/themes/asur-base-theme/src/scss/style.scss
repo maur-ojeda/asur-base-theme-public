@@ -1,13 +1,11 @@
 @import "abstracts/variables";
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/fastbootstrap/src/scss/fastbootstrap.scss";
 @import "../../node_modules/hover.css/scss/hover.scss";
 @import "helpers/helpers";
 @import "base/typography";
 @import "base/base";
-
 @import "layout/header";
 @import "layout/footer";
-
 @import "sections/hero";
 @import "sections/info-block";
 

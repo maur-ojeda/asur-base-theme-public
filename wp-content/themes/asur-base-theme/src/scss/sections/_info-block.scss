@@ -1,12 +1,10 @@
 .info-block {
-  //margin-top: 7.5rem;
+  margin-top: 7.75rem;
+  margin-bottom: 12.5rem;
 
-  .title {
-    @extend .mb-7;
-  }
-
+  .title,
   .over-title {
-    margin-top: 2.5rem;
+    @extend .mb-7;
   }
 
   .img-krom-wrapper {
@@ -44,6 +42,21 @@
       &::after {
         top: -1.25rem;
         right: -1.25rem;
+        width: 45%;
+        height: 2.5rem;
+      }
+    }
+
+    &.type-4 {
+      &::after {
+        display: none !important;
+      }
+    }
+
+    &.type-5 {
+      &::after {
+        top: -1.25rem;
+        left: -1.25rem;
         width: 45%;
         height: 2.5rem;
       }
