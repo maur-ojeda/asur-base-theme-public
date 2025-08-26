@@ -1,9 +1,20 @@
-#call-to-action {
-  @extend .py-10;
-  .intro-section {
-    h2 {
-      @extend .display-4;
-      color: $body-color-title;
+$block: "call-to-action";
+
+.#{$block} {
+  @extend .mt-20;
+  @extend .text-center;
+  &-item {
+    @extend .col;
+    @extend .offset-md-1;
+
+    .title {
+    }
+
+    p {
+      @extend .over-title;
+    }
+
+    .btn-krom {
     }
   }
 }

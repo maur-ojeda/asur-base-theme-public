@@ -73,24 +73,30 @@ if ($item->have_posts()) : ?>
 */
 
 
-$title = 'KROM INDUSTRY';
+$title = 'NUESTRA OFERTA SE AMPLIA  A INTEGRAR UN MAYOR VALOR EN LOS PROCESOS INDUSTRIALES';
 $content = 'Estamos preparados para ser el socio estratégico que su industria necesita, entregamos soluciones integrales en ingeniería, asesoría técnica y suministro de equipos, con un servicio especializado de excelencia apoyado en una sólida red de clase mundial.';
-$overTitle = 'UN SOCIO ESTRATÉGICO';
 $btnUrl = 'javascript:void(0);';
 $btnText = 'Ver más';
-
+$icon = 'arrow-right';
 
 ?>
+
 
 <section class="call-to-action">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h3 class="display-6" data-aos="fade" data-aos-delay="200"><?= esc_html($title); ?></h3>
+            <div class="call-to-action-item">
+               <h2 class="title" data-aos="fade-up" data-aos-delay="400"><?= esc_html($title); ?></h2>
+          
+                <p  data-aos="fade-up" data-aos-delay="600"><?= esc_html(strip_tags($content)); ?></p>       
+                
+                  <?php if ($btnUrl && $btnText): ?>  
+                      <a href="<?= $btnUrl; ?>" class="btn-krom" data-aos="fade-up" data-aos-delay="800">
+                        <?= esc_html($btnText); ?>
+                        <i data-lucide="<?php echo esc_attr( $icon ); ?>"></i>
+                      </a>
+                    <?php endif; ?>
             </div>
-            <div class="col" data-aos="fade-right" data-aos-delay="600">
-                <p class="text-muted"  ><?= esc_html(strip_tags($content)); ?>  </p>
-                <a  class="fw-bold text-decoration-none hvr-underline-from-left" href="<?= $btnUrl; ?>"><?= $btnText; ?></a>
             </div>
         </div>
     </div>

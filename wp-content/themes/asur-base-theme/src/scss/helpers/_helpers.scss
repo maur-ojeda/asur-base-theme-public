@@ -13,6 +13,12 @@
     background: darken($primary, 20%);
     border: none;
   }
+  &:focus-visible {
+    background: darken($primary, 25%);
+  }
+  &:hover {
+    background: darken($primary, 30%);
+  }
 }
 
 .offset-lg-05 {

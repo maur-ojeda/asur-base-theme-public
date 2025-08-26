@@ -6,7 +6,7 @@ $block: "hero";
   @extend .align-items-center;
   @extend .position-relative;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center bottom;
   background-size: cover;
   color: $light;
   &-overlay {

@@ -3,7 +3,7 @@
         'name' => 'asur/base-theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '4546e8eabd1d4d2b2cb0b14bfd247bd58ad26dd5',
+        'reference' => '09e7fb67c6dd92b5cbcf215fd0bb4f620f8a88e6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'asur/base-theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '4546e8eabd1d4d2b2cb0b14bfd247bd58ad26dd5',
+            'reference' => '09e7fb67c6dd92b5cbcf215fd0bb4f620f8a88e6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

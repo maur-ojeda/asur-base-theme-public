@@ -1,0 +1,50 @@
+$block: "category-showcase";
+
+.#{$block} {
+  &-item {
+    @extend .col-12;
+    @extend .col-md-6;
+    @extend .col-lg-3;
+    @extend .pt-12;
+    @extend .ps-6;
+    @extend .pe-6;
+    @extend .pb-10;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 620px;
+    div {
+      @extend .d-flex;
+      @extend .flex-column;
+      @extend .h-100;
+    }
+    @extend .transition;
+    &:hover {
+      box-shadow: inset 0 0 5px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    @include media-breakpoint-down(xl) {
+      height: 420px;
+    }
+
+    @include media-breakpoint-down(md) {
+      height: 320px;
+    }
+  }
+
+  &-title {
+    @extend .text-uppercase;
+    @extend .fw-semibold;
+    @extend .fs-2;
+
+    @include media-breakpoint-down(xl) {
+      font-size: 1.5rem !important;
+    }
+  }
+
+  .btn-krom {
+    @extend .mt-auto;
+    @extend .align-self-end;
+    @extend .btn-sm;
+  }
+}

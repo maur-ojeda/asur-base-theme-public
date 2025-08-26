@@ -171,3 +171,120 @@ function ensure_https($url) {
     // Para producción, debería ser: return esc_url(set_url_scheme($url, 'https'));
     return esc_url(set_url_scheme($url, 'http'));
 }
+
+
+// 1. Registrar taxonomías (en init)
+add_action('init', 'registrar_taxonomias_basicas');
+function registrar_taxonomias_basicas() {
+
+    register_taxonomy('industria', ['producto', 'monitoreo'], [
+        'labels' => [
+            'name' => 'Industrias',
+            'singular_name' => 'Industria',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'industria'],
+    ]);
+
+    register_taxonomy('linea_producto', 'producto', [
+        'labels' => [
+            'name' => 'Líneas de Producto',
+            'singular_name' => 'Línea de Producto',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'linea-producto'],
+    ]);
+
+    register_taxonomy('categoria_tecnologia', 'producto', [
+        'labels' => [
+            'name' => 'Categorías Tecnológicas',
+            'singular_name' => 'Categoría Tecnológica',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'categoria-tecnologia'],
+    ]);
+
+    register_taxonomy('segmento', 'monitoreo', [
+        'labels' => [
+            'name' => 'Segmentos',
+            'singular_name' => 'Segmento',
+        ],
+        'hierarchical'      => false,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'segmento'],
+    ]);
+
+    register_taxonomy('tipo_info', 'info', [
+        'labels' => [
+            'name' => 'Tipos de Información',
+            'singular_name' => 'Tipo de Información',
+        ],
+        'hierarchical'      => false,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'tipo-info'],
+    ]);
+
+    register_taxonomy('familia_producto', 'producto', [
+        'labels' => [
+            'name' => 'Familias de Producto',
+            'singular_name' => 'Familia de Producto',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'familia-producto'],
+    ]);
+
+    register_taxonomy('mercado_objetivo', 'producto', [
+        'labels' => [
+            'name' => 'Mercados Objetivo',
+            'singular_name' => 'Mercado Objetivo',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'mercado-objetivo'],
+    ]);
+}
+
+
+// 2. Agrupar bajo un menú padre "Taxonomías"
+add_action('admin_menu', 'crear_menu_taxonomias');
+function crear_menu_taxonomias() {
+    // Menú padre
+    add_menu_page(
+        'Taxonomías',
+        'Taxonomías',
+        'manage_options',
+        'menu-taxonomias',
+        '',
+        'dashicons-category',
+        25
+    );
+
+
+
+    // Submenús para cada taxonomía
+    add_submenu_page('menu-taxonomias', 'Industrias', 'Industrias', 'manage_options', 'edit-tags.php?taxonomy=industria');
+    add_submenu_page('menu-taxonomias', 'Líneas de Producto', 'Líneas de Producto', 'manage_options', 'edit-tags.php?taxonomy=linea_producto');
+    add_submenu_page('menu-taxonomias', 'Categorías Tecnológicas', 'Categorías Tecnológicas', 'manage_options', 'edit-tags.php?taxonomy=categoria_tecnologia');
+    add_submenu_page('menu-taxonomias', 'Segmentos', 'Segmentos', 'manage_options', 'edit-tags.php?taxonomy=segmento');
+    add_submenu_page('menu-taxonomias', 'Tipos de Información', 'Tipos de Información', 'manage_options', 'edit-tags.php?taxonomy=tipo_info');
+    add_submenu_page('menu-taxonomias', 'Familias de Producto', 'Familias de Producto', 'manage_options', 'edit-tags.php?taxonomy=familia_producto');
+    add_submenu_page('menu-taxonomias', 'Mercados Objetivo', 'Mercados Objetivo', 'manage_options', 'edit-tags.php?taxonomy=mercado_objetivo');
+}

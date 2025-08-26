@@ -4,6 +4,7 @@
 
   .title,
   .over-title {
+    @extend .text-uppercase;
     @extend .mb-7;
   }
 

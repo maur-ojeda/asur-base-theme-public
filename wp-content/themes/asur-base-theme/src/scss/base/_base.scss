@@ -8,7 +8,6 @@
 .over-title {
   @extend .text-primary;
   @extend .fw-semibold;
-  @extend .text-uppercase;
   @extend .fs-5;
 }
 
@@ -28,11 +27,14 @@ p {
   @extend .hvr-radial-out;
   border-radius: $btn-border-radius;
   box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
-  padding: 14px 18px;
+  padding: 8px 18px;
   margin-top: 24px;
 }
 
 .img-krom {
   @extend .img-fluid;
   border-radius: $image-border-radius;
+}
+.transition {
+  transition: all 0.2s ease-in-out;
 }
