@@ -44,7 +44,7 @@ if ($footer_settings_query->have_posts()) {
 ?>
  
 </main>
-<footer class="footer">
+<footer class="footer d-none">
     <div class="container-fluid p-0">
         <div class="footer-content container">
             <div class="footer-section main">
@@ -128,6 +128,86 @@ if ($footer_settings_query->have_posts()) {
         </div>
     </div>
 </footer>
+
+
+<div class="footer-bg">
+
+    <div class="footer-image-clipped"></div>
+
+
+    <div class="shape-top-orange"></div>
+    
+    <footer class="bg-dark-blue py-5" style="z-index: 4;">
+        <div class="container footer-content">
+            <div class="row">
+                <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                    <h2 class="h3 fw-bold">KROM<br>Industry</h2>
+                    <p class="small text-white-50">Equipo enfocado en ofrecer un servicio integral al sector minero-metalúrgico, actuando como socio estratégico para sus representaciones.</p>
+                    <div class="d-flex gap-2">
+                        <span class="rounded-circle bg-white" style="width:10px; height:10px;"></span>
+                        <span class="rounded-circle bg-white" style="width:10px; height:10px;"></span>
+                        <span class="rounded-circle bg-white" style="width:10px; height:10px;"></span>
+                        <span class="rounded-circle bg-white" style="width:10px; height:10px;"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                            <h5 class="fw-bold">Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-white-50 text-decoration-none">Home</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">About Us</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">Servicios</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">Empresas</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">
+                            <h5 class="fw-bold">Servicios</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-white-50 text-decoration-none">Home</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">About Us</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">Servicios</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">Empresas</a></li>
+                                <li><a href="#" class="text-white-50 text-decoration-none">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-6">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <h5 class="fw-bold">Información</h5>
+                                    <ul class="list-unstyled">
+                                        <li><span class="text-white-50">Número</span></li>
+                                        <li><span class="text-white-50">Correo Electrónico</span></li>
+                                        <li><span class="text-white-50">Dirección</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-12">
+                                    <h5 class="fw-bold">Horarios</h5>
+                                    <p class="small text-white-50 mb-0">Lunes - Jueves (9:00 - 17:00)</p>
+                                    <p class="small text-white-50 mb-0">Viernes (9:00 - 17:30)</p>
+                                    <p class="small text-white-50 mb-0">Sábado y Domingo (Cerrado)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p class="small text-white-50 mb-0">Copyright © 2024 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="shape-bottom-orange"></div>
+</div>
+
+
+
+
+
 
 <?php wp_footer(); // Este es el único wp_footer() necesario al final del archivo ?>
 </body>

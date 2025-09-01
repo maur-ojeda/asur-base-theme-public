@@ -126,8 +126,8 @@ add_action('carbon_fields_register_fields', function () {
  * Deshabilita el editor de bloques (Gutenberg) para los CPTs personalizados.
  * Fuerza el uso del editor clásico para una experiencia más consistente con Carbon Fields.
  */
-add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_type) {
-    $core_post_types = ['post', 'page', 'attachment', 'revision', 'nav_menu_item'];
+/*add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_type) {
+    //$core_post_types = ['post', 'page', 'attachment', 'revision', 'nav_menu_item'];
 
     // Si el tipo de post no es uno de los principales de WordPress, deshabilita Gutenberg.
     if (!in_array($post_type, $core_post_types)) {
@@ -135,7 +135,9 @@ add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_t
     }
 
     return $use_block_editor;
-}, 10, 2);
+}, 10, 2);*/
+add_filter('use_block_editor_for_post_type', '__return_false', 10, 2);
+
 
 /**
  * Añade una página de menú en el administrador para agrupar los CPTs.
@@ -260,6 +262,32 @@ function registrar_taxonomias_basicas() {
         'show_in_rest'      => true,
         'rewrite'           => ['slug' => 'mercado-objetivo'],
     ]);
+
+    // 🌟 Nuevas taxonomías basadas en el diagrama
+    register_taxonomy('fabricante', 'producto', [
+        'labels' => [
+            'name' => 'Fabricantes',
+            'singular_name' => 'Fabricante',
+        ],
+        'hierarchical'      => false, // No jerárquica
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'fabricante'],
+    ]);
+
+    register_taxonomy('tecnologia', 'producto', [
+        'labels' => [
+            'name' => 'Tecnologías',
+            'singular_name' => 'Tecnología',
+        ],
+        'hierarchical'      => true, // Jerárquica
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'tecnologia'],
+    ]);
+
 }
 
 
@@ -277,8 +305,6 @@ function crear_menu_taxonomias() {
         25
     );
 
-
-
     // Submenús para cada taxonomía
     add_submenu_page('menu-taxonomias', 'Industrias', 'Industrias', 'manage_options', 'edit-tags.php?taxonomy=industria');
     add_submenu_page('menu-taxonomias', 'Líneas de Producto', 'Líneas de Producto', 'manage_options', 'edit-tags.php?taxonomy=linea_producto');
@@ -287,4 +313,8 @@ function crear_menu_taxonomias() {
     add_submenu_page('menu-taxonomias', 'Tipos de Información', 'Tipos de Información', 'manage_options', 'edit-tags.php?taxonomy=tipo_info');
     add_submenu_page('menu-taxonomias', 'Familias de Producto', 'Familias de Producto', 'manage_options', 'edit-tags.php?taxonomy=familia_producto');
     add_submenu_page('menu-taxonomias', 'Mercados Objetivo', 'Mercados Objetivo', 'manage_options', 'edit-tags.php?taxonomy=mercado_objetivo');
+
+    // 🌟 Nuevos submenús
+    add_submenu_page('menu-taxonomias', 'Fabricantes', 'Fabricantes', 'manage_options', 'edit-tags.php?taxonomy=fabricante');
+    add_submenu_page('menu-taxonomias', 'Tecnologías', 'Tecnologías', 'manage_options', 'edit-tags.php?taxonomy=tecnologia');
 }

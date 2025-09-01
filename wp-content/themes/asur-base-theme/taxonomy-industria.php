@@ -1,74 +1,59 @@
-<?php get_header(); ?>
-
-<main id="main-content" class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1><?php single_term_title(); ?></h1>
-            <div class="taxonomy-description">
-                <?php echo term_description(); ?>
-            </div>
-        </div>
-    </div>
-    
-    <?php
-    // Obtiene el término de industria actual
+<?php
     $current_term = get_queried_object();
-    
-    // Encuentra los términos del siguiente nivel (Líneas de Producto)
+    $custom_title = carbon_get_term_meta($current_term->term_id, 'taxonomy_custom_title');
+    $custom_over_title = carbon_get_term_meta($current_term->term_id, 'taxonomy_custom_over_title');
+
     $child_terms = get_terms([
         'taxonomy'   => 'linea_producto',
         'hide_empty' => false,
-        'parent'     => 0, // Esto busca términos de nivel superior
-        // Aquí podrías filtrar por la taxonomía de la industria si lo necesitas,
-        // pero para simplificar, se muestran todas las líneas de producto.
+        'meta_query' => [
+            [
+                'key'     => '_crb_industria_parent',
+                'value'   => $current_term->term_id,
+                'compare' => 'LIKE',
+            ],
+        ],
     ]);
+?>
 
-    if (!empty($child_terms) && !is_wp_error($child_terms)) :
-    ?>
-    <div class="row mt-4">
+<?php get_header(); ?>
+
+
+
+<div class="container py-5">
+    <div class="row mb-4">
         <div class="col-12">
-            <h2>Líneas de Producto</h2>
-            <ul class="list-unstyled d-flex flex-wrap gap-3">
-                <?php foreach ($child_terms as $child_term) : ?>
-                    <li class="p-3 border rounded">
-                        <a href="<?php echo esc_url(get_term_link($child_term)); ?>">
-                            <?php echo esc_html($child_term->name); ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+            <h6 class="text-uppercase fw-bold custom-orange"><?php echo esc_html($custom_over_title); ?></h6>
+            <h1 class="display-5 fw-bold"><?php echo $custom_title ? esc_html($custom_title) : single_term_title('', false); ?></h1>
         </div>
     </div>
-    <?php endif; ?>
-
-    <hr>
-
-    <div class="row mt-4">
-        <div class="col-12">
-            <h2>Productos Directamente Asociados</h2>
-        </div>
-        <?php
-        // Bucle para mostrar los productos de la industria actual
-        if (have_posts()) : while (have_posts()) : the_post();
-        ?>
-            <div class="col-md-4 mb-4">
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                    <a href="<?php the_permalink(); ?>">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="post-thumbnail-wrapper">
-                                <?php the_post_thumbnail('medium'); ?>
-                            </div>
-                        <?php endif; ?>
-                        <h3><?php the_title(); ?></h3>
-                    </a>
-                </article>
+    <div class="row g-4 justify-content-center">
+        <?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
+            <?php foreach ($child_terms as $child_term) :
+                $term_description = carbon_get_term_meta($child_term->term_id, 'linea_producto_descripcion');
+                $term_image_url = carbon_get_term_meta($child_term->term_id, 'linea_producto_imagen');
+            ?>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <?php if ($term_image_url) : ?>
+                        <img src="<?php echo esc_url($term_image_url); ?>" class="card-img-top" alt="<?php echo esc_attr($child_term->name); ?>">
+                    <?php endif; ?>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><?php echo esc_html($child_term->name); ?></h5>
+                        <p class="card-text"><?php echo esc_html($term_description); ?></p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="<?php echo esc_url(get_term_link($child_term)); ?>" class="btn btn-krom">Ver Más <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
-        <?php endwhile; else : ?>
+            <?php endforeach; ?>
+        <?php else : ?>
             <div class="col-12">
-                <p>No hay productos asignados directamente a esta industria.</p>
+                <p>No se encontraron líneas de producto para esta industria.</p>
             </div>
         <?php endif; ?>
     </div>
-</main>
+</div>
 
 <?php get_footer(); ?>

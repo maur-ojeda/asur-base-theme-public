@@ -156,3 +156,97 @@ $block: "footer";
     font-size: 14px;
   }
 }
+
+/* clip-path: */
+
+.footer-bg {
+  position: relative;
+}
+
+.footer-image-clipped {
+  position: relative;
+  z-index: 1;
+  height: 600px;
+  background-image: url("https://picsum.photos/1920/1080");
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(
+    0 87px,
+    308px 0,
+    896px 63px,
+    1440px 43px,
+    1440px 548px,
+    1070px 507px,
+    0 550px
+  );
+}
+
+.shape-top-orange {
+  height: 162px;
+  top: -74px;
+  background-color: #e6522c;
+
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+
+  /*
+            clip-path: polygon( 
+        0 0, 41% 0, 100% 0,
+        100% 100%, 55% 100%, 0 100%
+);
+
+            */
+
+  clip-path: polygon(
+    0 87px,
+    309px 0px,
+    1440px 117px,
+    895px 137px,
+    308px 74px,
+    0 162px
+  );
+}
+
+.shape-bottom-orange {
+  width: 100%;
+
+  background-color: #e6522c;
+  height: 83px; /* Ajusta la altura según tu diseño */
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+  /*
+            
+             */
+  clip-path: polygon(
+    0 87px,
+    309px 0px,
+    1440px 117px,
+    895px 137px,
+    308px 74px,
+    0 162px
+  );
+}
+
+/*.footer-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7); 
+            z-index: 1;
+        }*/
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 5rem 0;
+}
+
+.bg-dark-blue {
+  background-color: #0d1e3d;
+}

@@ -90,31 +90,3 @@ $block: "hero";
     max-height: 250px;
   }
 }
-
-/*
-@media (min-width: 768px) {
-  .hero-zoom {
-    animation: heroZoomIn 10s ease-out forwards;
-    background-size: 105%;
-
-    @keyframes heroZoomIn {
-      0% {
-        background-size: 110%;
-      }
-      100% {
-        background-size: 100%;
-      }
-    }
-  }
-}
-
-
-
-xs: <576px
-sm: ≥576px
-md: ≥768px
-lg: ≥992px
-xl: ≥1200px
-xxl: ≥1400px
-
-*/
