@@ -141,7 +141,9 @@ $layout = [
     
 <?php get_template_part('template-parts/section', 'innovation-projects-carousel'); ?>
 <?php get_template_part('template-parts/section', 'technological-solutions-carousel'); ?>
+
 <?php get_template_part('template-parts/section', 'partners'); ?>
+
 <?php get_template_part('template-parts/section', 'form-home'); ?>
 
 </main>

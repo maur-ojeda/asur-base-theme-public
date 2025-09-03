@@ -10,7 +10,31 @@ $ficha_tecnica_term = get_term_by('slug', 'ficha-tecnica', 'tipo_info');
 $ficha_tecnica_id = $ficha_tecnica_term ? $ficha_tecnica_term->term_id : 0;
 ?>
 
-<div class="container py-5">
+
+<section class="hero inner" 
+            style="background-image: url('https://picsum.photos/800/600')">
+        
+            <div class="hero-overlay" style="background-color: rgba(0,0,0,.3);"></div>
+            
+            <div class="hero-title">
+                    <div class="row">
+                    <div class="offset-lg-05 col-md-11 col-12">
+                        
+                            <h1 data-aos="fade-up"><?php echo $custom_title ? esc_html($custom_title) : single_term_title('', false); ?></h1>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-shape">
+                    <img src="<?php echo get_template_directory_uri(); ?>/dist/img/hero-shape.png" alt="hero-shape">
+            </div>
+
+        </section>
+
+<div class="container py-10 my-20">
      <div class="row mb-4">
         <div class="col-12">
             <h6 class="text-uppercase fw-bold custom-orange"><?= $custom_over_title ?></h6>
@@ -24,7 +48,7 @@ $ficha_tecnica_id = $ficha_tecnica_term ? $ficha_tecnica_term->term_id : 0;
 
                 <?php
                 // Obtiene los términos de la taxonomía 'tecnologia' para el post actual.
-                $tecnologia_terms = get_the_terms(get_the_ID(), 'tecnologia');
+                $tecnologia_terms = get_the_terms(get_the_ID(), 'familia_producto');
                 $back_link = '';
                 if ($tecnologia_terms && !is_wp_error($tecnologia_terms)) {
                     $tecnologia_term = array_shift($tecnologia_terms);
@@ -55,7 +79,7 @@ $ficha_tecnica_id = $ficha_tecnica_term ? $ficha_tecnica_term->term_id : 0;
                             <p class="card-text"><?php the_excerpt(); ?></p>
                         </div>
                         <div class="card-footer bg-white border-0">
-                            <a href="<?php the_permalink(); ?>" class="btn btn-krom">Ver Producto <i data-lucide="arrow-right"></i></a>
+                            
                             
 
 
@@ -65,7 +89,7 @@ $ficha_tecnica_id = $ficha_tecnica_term ? $ficha_tecnica_term->term_id : 0;
                             <?php endif; ?>
 
                             <?php if ($back_link) : ?>
-                                <a href="<?php echo esc_url($back_link); ?>" class="btn btn-krom">Volver <i data-lucide="arrow-left"></i></a>
+                                <a href="<?php echo esc_url($back_link); ?>" class="btn btn-krom">Atras <i data-lucide="arrow-right"></i></a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -79,4 +103,10 @@ $ficha_tecnica_id = $ficha_tecnica_term ? $ficha_tecnica_term->term_id : 0;
     </div>
 </div>
 
+</div>
+
+
+
+
+<div class="mb-20">&nbsp;</div>
 <?php get_footer(); ?>

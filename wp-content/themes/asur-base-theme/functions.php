@@ -276,17 +276,17 @@ function registrar_taxonomias_basicas() {
         'rewrite'           => ['slug' => 'fabricante'],
     ]);
 
-    register_taxonomy('tecnologia', 'producto', [
+    /*register_taxonomy('tecnologia', 'producto', [
         'labels' => [
             'name' => 'Tecnologías',
             'singular_name' => 'Tecnología',
         ],
-        'hierarchical'      => true, // Jerárquica
+        'hierarchical'      => true, 
         'show_ui'           => true,
         'show_admin_column' => true,
         'show_in_rest'      => true,
         'rewrite'           => ['slug' => 'tecnologia'],
-    ]);
+    ]);*/
 
 }
 
@@ -316,5 +316,5 @@ function crear_menu_taxonomias() {
 
     // 🌟 Nuevos submenús
     add_submenu_page('menu-taxonomias', 'Fabricantes', 'Fabricantes', 'manage_options', 'edit-tags.php?taxonomy=fabricante');
-    add_submenu_page('menu-taxonomias', 'Tecnologías', 'Tecnologías', 'manage_options', 'edit-tags.php?taxonomy=tecnologia');
+    //add_submenu_page('menu-taxonomias', 'Tecnologías', 'Tecnologías', 'manage_options', 'edit-tags.php?taxonomy=tecnologia');
 }

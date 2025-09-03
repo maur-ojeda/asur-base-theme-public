@@ -14,7 +14,7 @@ if ($item->have_posts()) : ?>
 
   <pre class="theme-indicator">WIP: calltoaction</pre>
 
-  <section class="call-to-action">
+  <section class="call-to-action" class="mb-20">
 
     <?php
     // Buscar el primer servicio visible para usar como encabezado
@@ -82,7 +82,7 @@ $icon = 'arrow-right';
 ?>
 
 
-<section class="call-to-action">
+<section class="call-to-action my-20 py-20">
     <div class="container">
         <div class="row">
             <div class="call-to-action-item">

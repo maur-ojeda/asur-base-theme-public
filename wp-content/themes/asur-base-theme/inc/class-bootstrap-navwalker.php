@@ -1,5 +1,5 @@
 <?php
-class Bootstrap_5_Walker_Nav_Menu extends Walker_Nav_menu {
+class Bootstrap_5_Walker_Nav_Menu extends Walker_Nav_Menu {
     private $current_item;
     private $dropdown_menu_alignment_values = [
         'dropdown-menu-start',
@@ -17,79 +17,77 @@ class Bootstrap_5_Walker_Nav_Menu extends Walker_Nav_menu {
     ];
 
     function start_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
         $dropdown_menu_class = ['dropdown-menu'];
 
+        // Manejar alineación
         foreach ($this->current_item->classes as $class) {
             if (in_array($class, $this->dropdown_menu_alignment_values)) {
                 $dropdown_menu_class[] = $class;
             }
         }
 
-        $indent = str_repeat("\t", $depth);
+        // Añadir clase especial para subniveles
+        if ($depth > 0) {
+            $dropdown_menu_class[] = 'dropdown-submenu';
+        }
+
         $classes = implode(' ', $dropdown_menu_class);
-        $output .= "\n$indent<ul class=\"$classes\" aria-labelledby=\"dropdownMenu{$this->current_item->ID}\">\n";
+        $output .= "\n$indent<ul class=\"$classes\">\n";
     }
 
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
         $this->current_item = $item;
 
-        $classes = empty($item->classes) ? [] : (array)$item->classes;
-        $classes[] = 'nav-item';
-
+        $classes = empty($item->classes) ? [] : (array) $item->classes;
         $is_dropdown = in_array('menu-item-has-children', $classes);
+
+        // Clases para el <li>
+        $li_classes = ['nav-item'];
         if ($is_dropdown) {
-            $classes[] = 'dropdown';
+            $li_classes[] = 'dropdown';
         }
+        $li_classes = join(' ', array_filter($li_classes));
+        $output .= "<li class=\"" . esc_attr($li_classes) . "\">";
 
-        $class_names = join(' ', array_filter($classes));
-        $class_names = ' class="' . esc_attr($class_names) . '"';
-
-        $output .= "<li$class_names>";
-
+        // Atributos del <a>
         $atts = [
-            'title'  => !empty($item->attr_title) ? $item->attr_title : '',
-            'target' => !empty($item->target)     ? $item->target     : '',
-            'rel'    => !empty($item->xfn)        ? $item->xfn        : '',
-            'href'   => !empty($item->url)        ? $item->url        : '',
+            'href'   => !empty($item->url) ? $item->url : '',
+            'class'  => 'nav-link'
         ];
 
-        $atts['class'] = $is_dropdown ? 'nav-link dropdown-toggle' : 'nav-link';
-        if ($is_dropdown) {
+        // Ajustar clases y atributos según nivel
+        if ($depth > 0 && !$is_dropdown) {
+            $atts['class'] = 'dropdown-item';
+        } elseif ($depth === 0 && $is_dropdown) {
+            $atts['class'] .= ' dropdown-toggle';
             $atts['data-bs-toggle'] = 'dropdown';
+            $atts['data-bs-auto-close'] = 'outside'; 
             $atts['aria-expanded'] = 'false';
-            $atts['id'] = 'dropdownMenu' . $item->ID;
-            $atts['role'] = 'button';
+        } elseif ($depth > 0 && $is_dropdown) {
+            // Subnivel con hijos: solo clases, SIN data-bs-toggle
+            $atts['class'] = 'dropdown-item dropdown-toggle';
+            // Aquí no ponemos data-bs-toggle → lo maneja nuestro JS
         }
 
-        $attributes = '';
-        foreach ($atts as $attr => $value) {
-            if (!empty($value)) {
-                $value = esc_attr($value);
-                $attributes .= " $attr=\"$value\"";
+        $title = apply_filters('the_title', $item->title, $item->ID);
+
+        $item_output = $args->before;
+        $item_output .= "<a" . self::build_atts_string($atts) . ">";
+        $item_output .= $args->link_before . $title . $args->link_after;
+        $item_output .= "</a>";
+        $item_output .= $args->after;
+
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+    }
+
+    private static function build_atts_string($atts) {
+        $str = '';
+        foreach ($atts as $key => $value) {
+            if ($value) {
+                $str .= ' ' . $key . '="' . esc_attr($value) . '"';
             }
         }
-
-      $title = apply_filters('the_title', $item->title, $item->ID);
-
-// Si $args no es objeto, crea uno vacío para evitar errores
-if (!is_object($args)) {
-    $args = (object) [];
-}
-
-// Definir valores por defecto si no existen
-$args->before = $args->before ?? '';
-$args->after = $args->after ?? '';
-$args->link_before = $args->link_before ?? '';
-$args->link_after = $args->link_after ?? '';
-
-// Output del ítem del menú
-$item_output  = $args->before;
-$item_output .= "<a$attributes>";
-$item_output .= $args->link_before . $title . $args->link_after;
-$item_output .= '</a>';
-$item_output .= $args->after;
-
-$output .= $item_output;
-     
+        return $str;
     }
 }

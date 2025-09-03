@@ -130,14 +130,15 @@ if ($footer_settings_query->have_posts()) {
 </footer>
 
 
+
+
+
 <div class="footer-bg">
 
-    <div class="footer-image-clipped"></div>
+    <div class="footer-image-clipped" style="background-image: url('<?php echo ensure_https($footer_bg_image); ?>');">
 
 
-    <div class="shape-top-orange"></div>
-    
-    <footer class="bg-dark-blue py-5" style="z-index: 4;">
+<div class="bg-dark-blue- py-5 " style="z-index: 4;">
         <div class="container footer-content">
             <div class="row">
                 <div class="col-12 col-lg-5 mb-4 mb-lg-0">
@@ -200,7 +201,16 @@ if ($footer_settings_query->have_posts()) {
                 </div>
             </div>
         </div>
-    </footer>
+                                </div>
+
+
+
+    </div>
+
+
+    <div class="shape-top-orange"></div>
+    
+    
     <div class="shape-bottom-orange"></div>
 </div>
 
@@ -209,6 +219,59 @@ if ($footer_settings_query->have_posts()) {
 
 
 
-<?php wp_footer(); // Este es el único wp_footer() necesario al final del archivo ?>
+<?php wp_footer();?>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Delegación: manejar CUALQUIER toggle de subnivel (dentro de un .dropdown-menu)
+  document.addEventListener('click', function (e) {
+    const toggle = e.target.closest('.dropdown-toggle');
+    if (!toggle) return;
+
+    // Solo si el toggle está dentro de un submenú (no top-level)
+    const parentMenu = toggle.closest('.dropdown-menu');
+    if (!parentMenu) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    // El submenú es el siguiente hermano <ul>
+    const submenu = toggle.nextElementSibling;
+    if (!submenu || !submenu.classList.contains('dropdown-menu')) return;
+
+    // Cerrar otros submenús ABIERTOS en el MISMO nivel
+    parentMenu.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+      // mismo nivel: su <li> padre cuelga del mismo parentMenu
+      if (
+        openMenu !== submenu &&
+        openMenu.parentElement &&
+        openMenu.parentElement.parentElement === parentMenu
+      ) {
+        openMenu.classList.remove('show');
+      }
+    });
+
+    // Alternar el submenú actual
+    submenu.classList.toggle('show');
+  });
+
+  // 2) Si el dropdown raíz se cierra, limpiar todos los submenús abiertos
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    drop.addEventListener('hide.bs.dropdown', function () {
+      this.querySelectorAll('.dropdown-menu .dropdown-menu.show').forEach(m => m.classList.remove('show'));
+    });
+  });
+
+  // 3) (Opcional) Evitar que clicks dentro del menú cierren el padre
+  // Descomenta si aún notas cierres inesperados:
+  // document.querySelectorAll('.dropdown-menu').forEach(menu => {
+  //   menu.addEventListener('click', e => e.stopPropagation());
+  // });
+});
+
+
+</script>
+
 </body>
 </html>

@@ -86,7 +86,7 @@ if ($item->have_posts()) : ?>
 
 
 
-<div class="container py-5">
+<div class="container py-20 my-20">
     <div class="row align-items-center">
         <div class="col-lg-5 mb-4 mb-lg-0">
             <h6 class="text-uppercase fw-bold custom-orange">Soluciones Tecnológicas</h6>

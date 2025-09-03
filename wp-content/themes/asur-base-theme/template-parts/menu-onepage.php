@@ -7,9 +7,16 @@ $wsp = carbon_get_theme_option('projects_section_is_visible');
 ?>
 
 
+
+<div class="header">
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent transition-navbar py-3">
-  <div class="container" data-aos="fade-up" 
-                        data-aos-delay="400">
+
+  <div class="container" data-aos="fade-up" data-aos-delay="400">
+
+
+  
+
     <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
         <?php
         // Obtener logos del personalizador
@@ -19,11 +26,11 @@ $wsp = carbon_get_theme_option('projects_section_is_visible');
         ?>
 
         <?php if ( $white_logo_url ) : ?>
-            <img src="<?php echo ensure_https( $white_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" class="logo-white" style="height: 40px; width: auto;">
+            <img src="<?php echo ensure_https( $white_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" class="logo-white" style="height: 65px; width: auto;">
         <?php endif; ?>
         
         <?php if ( $color_logo_url ) : ?>
-            <img src="<?php echo ensure_https( $color_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" class="logo-color" style="height: 40px; width: auto;">
+            <img src="<?php echo ensure_https( $color_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" class="logo-color" style="height: 65px; width: auto;">
         <?php else : // Fallback si no hay logos, muestra el nombre del sitio ?>
             <span class="logo-text"><?php bloginfo( 'name' ); ?></span>
         <?php endif; ?>
@@ -35,14 +42,29 @@ $wsp = carbon_get_theme_option('projects_section_is_visible');
             <?php
             wp_nav_menu([
                 'theme_location' => 'main_menu',
-                'menu_class'     => 'navbar-nav ms-auto',
+                'menu_class'     => 'navbar-nav',
                 'container'      => false,
                 'walker'         => new Bootstrap_5_Walker_Nav_Menu(), 
+                'depth'          => 4, // 👈 Ajusta la profundidad del menú aquí
+
             ]);
+            
             ?>
-           <a href="#contact" class="btn btn-primary ms-lg-3 d-none d-lg-inline-flex align-items-center">
-                Contáctanos
+            <div class="ms-auto d-lg-inline-flex ">
+
+
+            <a href="#" class="btn text-white ms-lg-3 d-none d-lg-inline-flex align-items-center">
+               <i data-lucide="menu"></i>
             </a>
+
+ <a href="#" class="btn text-white ms-lg-3 d-none d-lg-inline-flex align-items-center">
+<i data-lucide="search"></i>
+            </a>
+
+            </div>
+           
         </div>
   </div>
 </nav>
+
+</div>

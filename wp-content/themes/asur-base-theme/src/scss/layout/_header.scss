@@ -1,59 +1,115 @@
-
+// Main navigation styles
 .navbar {
   position: fixed;
   width: 100%;
   background: transparent;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  
+  z-index: 1030; // Ensures the navbar stays on top
+
+  // Logo visibility based on scroll state
   .logo-color {
-    @extend .d-block;
+    display: block;
   }
 
   .logo-white {
-    @extend .d-none;
+    display: none;
   }
 
-  &.scrolled {
-    background-color: #fff !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-    .nav-link,
-    .navbar-brand {
-      color: #000 !important;
-    }
-
-    .navbar-toggler {
-      background-color: $primary;
-    }
-
-    .logo-color {
-      @extend .d-none;
-    }
-
-    .logo-white {
-      @extend .d-block;
-    }
-  }
-
-  .nav-link {
+  // Navbar links and buttons
+  .nav-link,
+  .dropdown-item {
     color: #fff;
     transition: color 0.3s;
   }
-}
 
-.navbar .btn {
-  padding: 0.5rem 1.25rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  .btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
-  &.btn-primary {
+    &.btn-primary {
+      background-color: $primary;
+      border: none;
+
+      &:hover {
+        background-color: darken($primary, 5%);
+      }
+    }
+  }
+
+  // Dropdown menu base
+  .dropdown-menu {
     background-color: $primary;
     border: none;
+    border-radius: 0;
+    display: none;
+    position: relative; // referencia para los hijos
+  }
 
-    &:hover {
-      background-color: darken($primary, 5%);
+  .dropdown-submenu {
+    position: absolute;
+    top: 0;
+    left: 100%; // hacia la derecha
+    margin-top: -6px;
+    margin-left: -1px;
+
+    @media (max-width: 991.98px) {
+      left: 0;
+      top: auto;
+      position: static;
+      margin-top: 0;
+      margin-left: 0;
     }
+  }
+
+  // Mostrar los menús abiertos al hacer click
+  .dropdown-menu.show {
+    display: block;
+  }
+}
+
+/*
+
+dropdown-menu dropdown-submenu show
+
+*/
+
+// -----
+.navbar.scrolled {
+  background-color: #fff !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .nav-link,
+  .navbar-brand {
+    color: #000 !important;
+  }
+
+  .navbar-toggler {
+    background-color: $primary;
+  }
+
+  .logo-color {
+    display: none;
+  }
+
+  .logo-white {
+    display: block;
+  }
+}
+
+.dropdown-menu {
+  display: none;
+}
+.dropdown-menu.show {
+  display: block;
+}
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%; /* desktop */
+  @media (max-width: 991.98px) {
+    position: static;
+    left: 0;
   }
 }

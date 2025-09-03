@@ -34,7 +34,7 @@ $term_image_url = carbon_get_term_meta($child_term->term_id, 'linea_producto_ima
 </div>
 <div class="card-footer bg-white border-0"> 
 
-<a href="<?php echo esc_url(get_term_link($child_term)); ?>" class="btn btn-krom">Ver Más <i data-lucide="arrow-right"></i></a>
+<a href="<?php echo esc_url(get_term_link($child_term)); ?>" class="btn btn-krom">Ver Más   </a>
 </div>
 </div>
 </div>

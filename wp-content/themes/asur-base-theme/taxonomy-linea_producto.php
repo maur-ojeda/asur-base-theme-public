@@ -15,15 +15,43 @@ $child_terms = get_terms([
         ],
 
 ]);
+
+
+
+
 ?>
 
 <?php get_header(); ?>
 
 
-<div class="container py-5">
+<section class="hero inner" 
+            style="background-image: url('https://picsum.photos/800/600')">
+        
+            <div class="hero-overlay" style="background-color: rgba(0,0,0,.3);"></div>
+            
+            <div class="hero-title">
+                    <div class="row">
+                    <div class="offset-lg-05 col-md-11 col-12">
+                        
+                            <h1 data-aos="fade-up"><?php echo $custom_title ? esc_html($custom_title) : single_term_title('', false); ?></h1>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-shape">
+                    <img src="<?php echo get_template_directory_uri(); ?>/dist/img/hero-shape.png" alt="hero-shape">
+            </div>
+
+        </section>
+
+
+<div class="container py-5 mt-20">
     <div class="row mb-4">
          <div class="col-12">
-            <h6 class="text-uppercase fw-bold custom-orange"><?php echo esc_html($custom_over_title); ?></h6>
+            <h6 class="text-uppercase fw-bold text-primary"><?php echo esc_html($custom_over_title); ?></h6>
             <h1 class="display-5 fw-bold"><?php echo $custom_title ? esc_html($custom_title) : single_term_title('', false); ?></h1>
 </div>
     </div>
@@ -33,7 +61,7 @@ $child_terms = get_terms([
 
 
     
-    <div class="row g-4 justify-content-center">
+    <div class="row g-4 justify-content-center mb-20 py-10 pb-20">
    
     <?php    
 
@@ -41,6 +69,9 @@ if (!empty($child_terms) && !is_wp_error($child_terms)) :
 foreach ($child_terms as $child_term) :                     
 $term_description = carbon_get_term_meta($child_term->term_id, 'linea_producto_descripcion');
 $term_image_url = carbon_get_term_meta($child_term->term_id, 'linea_producto_imagen');
+$term_familia_producto_parent = carbon_get_term_meta($child_term->term_id, '_crb_familia_producto_parent');
+
+
 ?>
 <div class="col-12 col-sm-12 col-md-6 col-lg-4">
 <div class="card border-0 h-100 shadow-sm">
@@ -48,7 +79,36 @@ $term_image_url = carbon_get_term_meta($child_term->term_id, 'linea_producto_ima
 <div class="card-body">
 <h5 class="card-title fw-bold"><?php echo esc_html($child_term->name); ?></h5>
 <p class="card-text"><?php echo esc_html($term_description); ?></p>
+     <?php 
+                        
+                            $fabricantes = get_terms([
+                                'taxonomy'   => 'fabricante',
+                                'hide_empty' => false,
+                                'meta_query' => [
+                                    [
+                                        'key'     => '_crb_familia_producto_parent',
+                                        'value'   => $child_term->term_id,
+                                        'compare' => 'LIKE',
+                                    ],
+                                ],
+                            ]);
+                        ?>                                     
+                        
+                        
+
+                        <?php if (!empty($fabricantes) && !is_wp_error($fabricantes)) : ?>
+                            <ul class="list-unstyled">
+                                <?php foreach ($fabricantes as $fabricante) : ?>
+                                    <li><a class="text-primary fw-semibold" href="<?php echo esc_url(get_term_link($fabricante)); ?>"><i data-lucide="chevron-right"></i> <?php echo esc_html($fabricante->name); ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+
+                    
+
+
 </div>
+
 <div class="card-footer bg-white border-0"> 
 
 <a href="<?php echo esc_url(get_term_link($child_term)); ?>" class="btn btn-krom">Ver Más <i data-lucide="arrow-right"></i></a>
@@ -61,6 +121,9 @@ $term_image_url = carbon_get_term_meta($child_term->term_id, 'linea_producto_ima
    
     </div>
           
-<div class="d-none">
-<?php get_footer(); ?>
+
+
 </div>
+
+
+<?php get_footer(); ?>

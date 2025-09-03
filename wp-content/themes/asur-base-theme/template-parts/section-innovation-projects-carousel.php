@@ -85,7 +85,7 @@ if ($item->have_posts()) : ?>
 
 
 
-<div class="container py-5">
+<div class="container py-20 my-20">
     <div class="row">
         <div class="col-12 mb-4">
             <h5 class="text-secondary text-uppercase">Proyectos</h5>

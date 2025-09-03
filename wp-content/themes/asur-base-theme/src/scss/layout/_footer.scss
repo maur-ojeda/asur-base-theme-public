@@ -1,12 +1,150 @@
-$block: "footer";
+.footer-bg {
+  margin-top: -45px;
+  position: relative;
+}
 
-.#{$block} {
-  background-color: $body-bg;
-  @extend .text-muted;
+.footer-image-clipped {
+  position: relative;
+  z-index: 1;
+  height: 600px;
+  background-image: url("https://picsum.photos/1920/1080");
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(
+    0 87px,
+    308px 0,
+    896px 63px,
+    100% 43px,
+    100% 548px,
+    1070px 507px,
+    0 550px
+  );
+
+  // Tablet
+  @include media-breakpoint-down(lg) {
+    height: 400px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  // Mobile
+  @include media-breakpoint-down(md) {
+    height: 300px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  // Mobile
+  @include media-breakpoint-down(sm) {
+    height: 200px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.shape-top-orange {
+  height: 162px;
+  top: -74px;
+  background-color: #e6522c;
+
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  clip-path: polygon(
+    0 87px,
+    309px 0px,
+    100% 117px,
+    895px 137px,
+    308px 74px,
+    0 162px
+  );
+  display: block;
+
+  // Tablet
+  @include media-breakpoint-down(lg) {
+    top: 0px;
+    height: 40px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  // Mobile
+  @include media-breakpoint-down(md) {
+    top: 0px;
+    height: 30px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  // Mobile
+  @include media-breakpoint-down(sm) {
+    top: 0px;
+    height: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.shape-bottom-orange {
+  width: 100%;
+  background-color: #e6522c;
+  height: 82px;
+  position: absolute;
+  bottom: 20px;
+  z-index: 3;
+  clip-path: polygon(
+    0 52px,
+    1071px 0px,
+    100% 42px,
+
+    100% 82px,
+    1114px 41px
+  );
+
+  display: block;
+
+  // Tablet
+  @include media-breakpoint-down(lg) {
+    bottom: 0px;
+    height: 25px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  // Mobile
+  @include media-breakpoint-down(md) {
+    bottom: 0px;
+    height: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  // Mobile
+  @include media-breakpoint-down(sm) {
+    bottom: 0px;
+    height: 15px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 5rem 0;
+  h3,
+  h5 {
+    color: white !important;
+  }
+}
+
+.bg-dark-blue {
+  background-color: #0d1e3d;
+}
+
+// Define variables for colors
+$footer-bg-color: #222222;
+$footer-text-color: #cccccc;
+$footer-link-color: #ffffff;
+$footer-link-hover-color: $primary;
+$footer-overlay-color: rgba(0, 0, 0, 0.7);
+$footer-border-color: #444444;
+$footer-title-color: #ffffff;
+
+.footer {
+  background-color: $footer-bg-color;
+  color: $footer-text-color;
+  padding: 60px 0 30px;
   position: relative;
   overflow: hidden; // Ensures background image doesn't overflow
 
-  &-bg {
+  .footer-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,7 +152,7 @@ $block: "footer";
     height: 100%;
     z-index: 0; // Behind content
 
-    &-bg-img {
+    .footer-bg-img {
       width: 100%;
       height: 100%;
       object-fit: cover; // Cover the entire area
@@ -22,13 +160,13 @@ $block: "footer";
       transform: translateY(0) !important; // Override inline style if present
     }
 
-    &-overlay {
+    .footer-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: $body-bg;
+      background-color: $footer-overlay-color;
     }
   }
 
@@ -40,7 +178,7 @@ $block: "footer";
     padding: 0 20px;
   }
 
-  &-content {
+  .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -54,7 +192,7 @@ $block: "footer";
     }
   }
 
-  &-section {
+  .footer-section {
     flex: 1;
     min-width: 250px; // Minimum width for sections
     max-width: 30%; // Max width to allow wrapping
@@ -72,22 +210,22 @@ $block: "footer";
     }
   }
 
-  &-logo {
+  .footer-logo {
     margin-bottom: 20px;
 
-    &-logo-img {
+    .footer-logo-img {
       max-width: 180px; // Adjust logo size as needed
       height: auto;
     }
   }
 
-  &-description {
+  .footer-description {
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 20px;
   }
 
-  &-social {
+  .footer-social {
     display: flex;
     gap: 15px;
     @media (max-width: 768px) {
@@ -95,11 +233,11 @@ $block: "footer";
     }
 
     .social-link {
-      color: $primary;
+      color: $footer-link-color;
       transition: color 0.3s ease;
 
       &:hover {
-        color: $primary;
+        color: $footer-link-hover-color;
       }
 
       svg {
@@ -109,19 +247,14 @@ $block: "footer";
     }
   }
 
-  &-title {
+  .footer-title {
     font-size: 18px;
-    color: $dark;
+    color: $footer-title-color;
     margin-bottom: 20px;
     font-weight: bold;
-    a {
-      color: $dark;
-      text-decoration: none;
-    }
   }
 
-  &-list {
-    @extend .text-primary;
+  .footer-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -133,7 +266,7 @@ $block: "footer";
       gap: 10px;
 
       a {
-        @extend .text-primary;
+        color: $footer-text-color;
         text-decoration: none;
         transition: color 0.3s ease;
 
@@ -145,108 +278,15 @@ $block: "footer";
       svg {
         width: 18px;
         height: 18px;
-        color: $primary;
+        color: $footer-link-color;
       }
     }
   }
 
-  &-bottom {
+  .footer-bottom {
     text-align: center;
     padding-top: 30px;
+    border-top: 1px solid $footer-border-color;
     font-size: 14px;
   }
-}
-
-/* clip-path: */
-
-.footer-bg {
-  position: relative;
-}
-
-.footer-image-clipped {
-  position: relative;
-  z-index: 1;
-  height: 600px;
-  background-image: url("https://picsum.photos/1920/1080");
-  background-size: cover;
-  background-position: center;
-  clip-path: polygon(
-    0 87px,
-    308px 0,
-    896px 63px,
-    1440px 43px,
-    1440px 548px,
-    1070px 507px,
-    0 550px
-  );
-}
-
-.shape-top-orange {
-  height: 162px;
-  top: -74px;
-  background-color: #e6522c;
-
-  width: 100%;
-  position: absolute;
-  z-index: 3;
-
-  /*
-            clip-path: polygon( 
-        0 0, 41% 0, 100% 0,
-        100% 100%, 55% 100%, 0 100%
-);
-
-            */
-
-  clip-path: polygon(
-    0 87px,
-    309px 0px,
-    1440px 117px,
-    895px 137px,
-    308px 74px,
-    0 162px
-  );
-}
-
-.shape-bottom-orange {
-  width: 100%;
-
-  background-color: #e6522c;
-  height: 83px; /* Ajusta la altura según tu diseño */
-  position: absolute;
-  bottom: 0;
-  z-index: 3;
-  /*
-            
-             */
-  clip-path: polygon(
-    0 87px,
-    309px 0px,
-    1440px 117px,
-    895px 137px,
-    308px 74px,
-    0 162px
-  );
-}
-
-/*.footer-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.7); 
-            z-index: 1;
-        }*/
-
-.footer-content {
-  position: relative;
-  z-index: 2;
-  color: white;
-  padding: 5rem 0;
-}
-
-.bg-dark-blue {
-  background-color: #0d1e3d;
 }
