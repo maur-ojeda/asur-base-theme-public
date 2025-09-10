@@ -60,9 +60,10 @@ switch ($type) {
 }
 ?>
 
+<pre><?php echo $type; ?></pre>
 
 <section class="info-block">
-    <div class="container-fluid mt-5">        
+    <div class="container mt-5">        
         <?php if ($type === 'type-3' && $extraTitle && $extraOverTitle) : ?>
             <div class="row mb-20">
                 <div class="col-12 offset-md-1 col-md-10" data-aos="fade" data-aos-delay="100">
@@ -76,16 +77,20 @@ switch ($type) {
 
             <?php // --- Image Column (if not type-6) --- ?>
             <?php if ($type !== 'type-6') : ?>
-                <div class="col-12 offset-md-1 col-md-4 <?= esc_attr($order); ?>" data-aos="fade-right">
+                <div class="col-md-6 <?= esc_attr($order); ?>" data-aos="fade-right">
                     <div class="img-krom-wrapper <?= esc_attr($type); ?>">
                         <img class="img-krom <?= esc_attr($order); ?>" src="<?php echo esc_url(ensure_https($image)); ?>" alt="">
                     </div>
                 </div>
             <?php endif; ?>
 
-            <?php // --- Content Column --- ?>
-            <div class="offset-md-1 col">
-                <?php if ($overTitle) : ?>
+            
+            
+            <?php // --- Text Column --- ?>
+            
+            <div class="<?= ($type == 'type-6') ? 'col' : 'col-md-5 ' . (($type == 'type-1') ? 'me-md-auto' : 'ms-md-auto') ?>">
+            
+            <?php if ($overTitle) : ?>
                     <h6 class="over-title" data-aos="fade-up" data-aos-delay="200"><?= esc_html($overTitle); ?></h6>
                 <?php endif; ?>
 

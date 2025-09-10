@@ -27,8 +27,13 @@ p {
   @extend .hvr-radial-out;
   border-radius: $btn-border-radius;
   box-shadow: 0 1px 4px 0 rgba(25, 33, 61, 0.08);
-  padding: 8px 18px;
+  padding: 14px;
   margin-top: 24px;
+  font-family: $font-primary;
+  .lucide {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
 }
 
 .img-krom {

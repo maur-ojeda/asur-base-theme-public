@@ -134,7 +134,6 @@ $layout = [
 
         <?php elseif ($item['type'] === 'call-to-action') : ?>
             <?php get_template_part('template-parts/section', 'call-to-action'); ?>
-
         <?php endif; ?>
 
     <?php endforeach; ?>

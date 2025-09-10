@@ -23,5 +23,10 @@ Container::make('post_meta', 'Opciones de Destacado')
                         ],
                     ]),
                 Field::make('image', 'image', 'Imagen de fondo'),
+                Field::make('color', 'title_color', 'Color de fondo')
+                    ->set_palette(['#ffffff', '#000000'])
+                    ->set_help_text('Este color se usará para el título de la sección.')
+                    ->set_width(50),        
             ]),
+        
     ]);

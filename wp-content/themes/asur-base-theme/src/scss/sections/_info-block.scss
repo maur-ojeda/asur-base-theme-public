@@ -8,6 +8,15 @@
     @extend .mb-7;
   }
 
+  .wysiwyg {
+    strong {
+      @extend .fs-sm;
+    }
+    p {
+      font-size: 1.125rem !important;
+    }
+  }
+
   .img-krom-wrapper {
     position: relative;
     box-sizing: content-box;
