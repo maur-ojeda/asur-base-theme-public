@@ -21,3 +21,16 @@ use Carbon_Fields\Field;
         ]);
 
 
+    Container::make('post_meta', 'call to action asociados')
+            ->where('post_type', '=', 'page')
+            ->add_fields([
+            Field::make('association', 'selected_call_to_action', 'Seleccionar')
+                ->set_types([
+                    [
+                        'type' => 'post',
+                        'post_type' => 'call-to-action'
+                    ]
+                ])
+            ->set_duplicates_allowed( false )
+            ->set_help_text('Selecciona los call to action  que se mostrarán en esta página.')
+        ]);

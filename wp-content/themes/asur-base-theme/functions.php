@@ -34,6 +34,8 @@ require_once get_template_directory() . '/inc/ajax/contact-form-handler.php';
 // Incluye la función para encolar los scripts y estilos del tema.
 require_once get_template_directory() . '/inc/enqueue.php';
 
+require_once get_template_directory() . '/inc/reusable-blocks.php';
+
 
 // =============================================================================
 // 2. CONFIGURACIÓN DEL TEMA
@@ -179,7 +181,10 @@ function ensure_https($url) {
 add_action('init', 'registrar_taxonomias_basicas');
 function registrar_taxonomias_basicas() {
 
-    register_taxonomy('industria', ['producto', 'monitoreo'], [
+
+  
+    // Taxonomía para Industrias
+    register_taxonomy('industrias', 'producto', [
         'labels' => [
             'name' => 'Industrias',
             'singular_name' => 'Industria',
@@ -188,133 +193,82 @@ function registrar_taxonomias_basicas() {
         'show_ui'           => true,
         'show_admin_column' => true,
         'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'industria'],
+        'rewrite'           => ['slug' => 'industrias'],
     ]);
 
-    register_taxonomy('linea_producto', 'producto', [
+    // Taxonomía para Procesos
+    register_taxonomy('procesos', 'producto', [
         'labels' => [
-            'name' => 'Líneas de Producto',
-            'singular_name' => 'Línea de Producto',
+            'name' => 'Procesos',
+            'singular_name' => 'Proceso',
         ],
         'hierarchical'      => true,
         'show_ui'           => true,
         'show_admin_column' => true,
         'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'linea-producto'],
+        'rewrite'           => ['slug' => 'procesos'],
     ]);
 
-    register_taxonomy('categoria_tecnologia', 'producto', [
+    // Taxonomía para Productos
+    /*register_taxonomy('productos', 'producto', [
         'labels' => [
-            'name' => 'Categorías Tecnológicas',
-            'singular_name' => 'Categoría Tecnológica',
+            'name' => 'Productos',
+            'singular_name' => 'Producto',
         ],
         'hierarchical'      => true,
         'show_ui'           => true,
         'show_admin_column' => true,
         'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'categoria-tecnologia'],
-    ]);
-
-    register_taxonomy('segmento', 'monitoreo', [
-        'labels' => [
-            'name' => 'Segmentos',
-            'singular_name' => 'Segmento',
-        ],
-        'hierarchical'      => false,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'segmento'],
-    ]);
-
-    register_taxonomy('tipo_info', 'info', [
-        'labels' => [
-            'name' => 'Tipos de Información',
-            'singular_name' => 'Tipo de Información',
-        ],
-        'hierarchical'      => false,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'tipo-info'],
-    ]);
-
-    register_taxonomy('familia_producto', 'producto', [
-        'labels' => [
-            'name' => 'Familias de Producto',
-            'singular_name' => 'Familia de Producto',
-        ],
-        'hierarchical'      => true,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'familia-producto'],
-    ]);
-
-    register_taxonomy('mercado_objetivo', 'producto', [
-        'labels' => [
-            'name' => 'Mercados Objetivo',
-            'singular_name' => 'Mercado Objetivo',
-        ],
-        'hierarchical'      => true,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'mercado-objetivo'],
-    ]);
-
-    // 🌟 Nuevas taxonomías basadas en el diagrama
-    register_taxonomy('fabricante', 'producto', [
-        'labels' => [
-            'name' => 'Fabricantes',
-            'singular_name' => 'Fabricante',
-        ],
-        'hierarchical'      => false, // No jerárquica
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'fabricante'],
-    ]);
-
-    /*register_taxonomy('tecnologia', 'producto', [
-        'labels' => [
-            'name' => 'Tecnologías',
-            'singular_name' => 'Tecnología',
-        ],
-        'hierarchical'      => true, 
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'rewrite'           => ['slug' => 'tecnologia'],
+        'rewrite'           => ['slug' => 'productos'],
     ]);*/
+    
+ // Taxonomía para Innovación
+    register_taxonomy('innovacion', 'info', [
+        'labels' => [
+            'name' => 'Innovación',
+            'singular_name' => 'Innovación',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'innovacion'],
+    ]);
+    
+    // Taxonomía para Innovación Artículo
+    register_taxonomy('innovacion_articulo', 'info', [
+        'labels' => [
+            'name' => 'Innovación artículo',
+            'singular_name' => 'Innovación artículo',
+        ],
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => ['slug' => 'innovacion-articulo'],
+    ]);
+
 
 }
 
 
-// 2. Agrupar bajo un menú padre "Taxonomías"
+
 add_action('admin_menu', 'crear_menu_taxonomias');
 function crear_menu_taxonomias() {
-    // Menú padre
     add_menu_page(
         'Taxonomías',
         'Taxonomías',
         'manage_options',
         'menu-taxonomias',
-        '',
+         false,
         'dashicons-category',
         25
     );
 
-    // Submenús para cada taxonomía
-    add_submenu_page('menu-taxonomias', 'Industrias', 'Industrias', 'manage_options', 'edit-tags.php?taxonomy=industria');
-    add_submenu_page('menu-taxonomias', 'Líneas de Producto', 'Líneas de Producto', 'manage_options', 'edit-tags.php?taxonomy=linea_producto');
-    add_submenu_page('menu-taxonomias', 'Categorías Tecnológicas', 'Categorías Tecnológicas', 'manage_options', 'edit-tags.php?taxonomy=categoria_tecnologia');
-    add_submenu_page('menu-taxonomias', 'Segmentos', 'Segmentos', 'manage_options', 'edit-tags.php?taxonomy=segmento');
-    add_submenu_page('menu-taxonomias', 'Tipos de Información', 'Tipos de Información', 'manage_options', 'edit-tags.php?taxonomy=tipo_info');
-    add_submenu_page('menu-taxonomias', 'Familias de Producto', 'Familias de Producto', 'manage_options', 'edit-tags.php?taxonomy=familia_producto');
-    add_submenu_page('menu-taxonomias', 'Mercados Objetivo', 'Mercados Objetivo', 'manage_options', 'edit-tags.php?taxonomy=mercado_objetivo');
-
-    // 🌟 Nuevos submenús
-    add_submenu_page('menu-taxonomias', 'Fabricantes', 'Fabricantes', 'manage_options', 'edit-tags.php?taxonomy=fabricante');
-    //add_submenu_page('menu-taxonomias', 'Tecnologías', 'Tecnologías', 'manage_options', 'edit-tags.php?taxonomy=tecnologia');
+    
+    add_submenu_page('menu-taxonomias', 'Industrias', 'Industrias', 'manage_options', 'edit-tags.php?taxonomy=industrias');
+    add_submenu_page('menu-taxonomias', 'Procesos', 'Procesos', 'manage_options', 'edit-tags.php?taxonomy=procesos');
+    add_submenu_page('menu-taxonomias', 'Innovación', 'Innovación', 'manage_options', 'edit-tags.php?taxonomy=innovacion');
+    
+    
 }

@@ -1,11 +1,17 @@
-<?php
-/**
- * The template for displaying 404 pages (not found)
- * This template redirects to the homepage.
- */
+<?php get_header(); ?> 
 
-// Redirigir a la página de inicio
-wp_redirect(home_url(), 301); 
-exit; 
+<main id="main-content vh-100">
+Soy solo page    
+    <?php
+    //while (have_posts()) :
+    //    the_post();
+    //    the_content();
+    //endwhile;
+    ?>
 
-?>
+
+
+</main>
+
+
+<?php get_footer(); ?>

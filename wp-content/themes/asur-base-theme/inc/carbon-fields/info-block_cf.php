@@ -1,19 +1,13 @@
 <?php
-/**
- * Defines the custom fields for the 'info-block' post type.
- *
- * @package asur-base-theme
- */
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
-// Defines the post meta container for 'info-block' post type.
+
 Container::make('post_meta', 'Campos de Info Block')
     ->where('post_type', '=', 'info-block')
     ->add_fields([
 
-        // Visibility and Ordering Fields
         Field::make('checkbox', 'is_visible', 'Mostrar esta sección')
             ->set_option_value('yes')
             ->set_width(50)
@@ -27,7 +21,7 @@ Container::make('post_meta', 'Campos de Info Block')
             ->set_attribute('type', 'number')
             ->set_help_text('Número que define el orden de aparición, de menor a mayor.'),
 
-        // Layout Type Selector
+
         Field::make('separator', 'crb_type_separator', 'Tipo de Página'),
         Field::make('select', 'type', 'Tipo de Info Block')
             ->add_options([
@@ -41,7 +35,6 @@ Container::make('post_meta', 'Campos de Info Block')
             ])
             ->set_width(50),
 
-        // Content Fields
         Field::make('separator', 'crb_content_separator', 'Contenido'),
         Field::make('text', 'over_title', 'Sobre título'),
         Field::make('image', 'image', 'Imagen')
@@ -49,7 +42,6 @@ Container::make('post_meta', 'Campos de Info Block')
         Field::make('text', 'extra_title', 'Título adicional'),
         Field::make('text', 'extra_overtitle', 'Adicional sobre título'),
 
-        // Button Fields
         Field::make('separator', 'crb_links_separator', 'Botón'),
         Field::make('text', 'btn_icon', 'Nombre del Ícono (Lucide)')
             ->set_help_text('Ej: Ver https://lucide.dev/icons/')
@@ -62,3 +54,19 @@ Container::make('post_meta', 'Campos de Info Block')
             ->set_attribute('type', 'url')
             ->set_width(33),
     ]);
+
+
+   Container::make('post_meta', 'info blocks Asociados')
+        ->where('post_type', '=', 'page')
+        ->add_fields([
+        Field::make('association', 'selected_info_blocks', 'Seleccionar info blocks')
+            ->set_types([
+                [
+                    'type' => 'post',
+                    'post_type' => 'info-block'
+                ]
+            ])
+        ->set_duplicates_allowed( false )
+        ->set_help_text('Selecciona los info blocks que se mostrarán en esta página.')
+    ]);
+

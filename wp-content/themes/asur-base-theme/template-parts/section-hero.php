@@ -1,10 +1,12 @@
 <?php
+
+$selected_hero_id = carbon_get_post_meta(get_the_ID(), 'selected_hero');
+
 $args = array(
-    'post_type'      => 'hero',
-    'posts_per_page' => 1,
-    'post_status'    => 'publish',
-    'orderby'        => 'date',
-    'order'          => 'DESC',
+            'post_type' => 'hero',
+            'p' => $selected_hero_id[0]['id'], 
+            'post_status' => 'publish',
+            'posts_per_page' => 1
 );
 
 $hero_query = new WP_Query($args);
@@ -26,16 +28,11 @@ if ($hero_query->have_posts()) :
         $overlay_opacity   = carbon_get_the_post_meta('hero_overlay_opacity');
         $background_color   = carbon_get_the_post_meta('hero_background_color');
         $background_image = carbon_get_the_post_meta('hero_background_image');
-        $is_visible       = carbon_get_the_post_meta('is_visible');
-
-        if (!$is_visible) {
-            continue;            
-        }
-
-     
+        $is_visible       = carbon_get_the_post_meta('is_visible');        
+        
         ?>
 
-        <section class="hero <?= esc_attr($type); ?>" 
+        <section class="hero home" 
             style="background-image: url('<?php echo esc_url(ensure_https($background_image)); ?>')">
         
             <div class="hero-overlay <?= esc_attr($overlay_opacity); ?>" style="background-color: <?= esc_attr($background_color); ?>;"></div>

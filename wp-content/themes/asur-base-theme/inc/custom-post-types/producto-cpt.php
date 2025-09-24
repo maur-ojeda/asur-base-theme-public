@@ -11,7 +11,7 @@ add_action('init', function () {
         'new_item'           => __('Nuevo producto', 'asur-base-theme'),
         'edit_item'          => __('Editar producto', 'asur-base-theme'),
         'view_item'          => __('Ver producto', 'asur-base-theme'),
-        'all_items'          => __('Todos los productos', 'asur-base-theme'),
+        'all_items'          => __('Productos', 'asur-base-theme'),
         'search_items'       => __('Buscar productos', 'asur-base-theme'),
         'not_found'          => __('No se encontraron productos', 'asur-base-theme'),
         'not_found_in_trash' => __('No se encontraron productos en la papelera', 'asur-base-theme'),
@@ -25,8 +25,8 @@ add_action('init', function () {
         'menu_icon'          => 'dashicons-cart',
         'supports'           => ['title', 'editor', 'thumbnail'],
         'show_in_rest'       => true,
-        'show_in_menu'       => 'cpt',
+        'show_in_menu'       => 'menu-taxonomias',
 
-        'taxonomies'         => ['industria', 'linea_producto', 'categoria_tecnologia', 'familia_producto', 'mercado_objetivo'],
+        'taxonomies'         => ['industria', 'procesos'],
     ]);
 });

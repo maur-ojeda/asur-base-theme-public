@@ -29,3 +29,4 @@ function asur_register_cpt_hero() {
     register_post_type('hero', $args);
 }
 add_action('init', 'asur_register_cpt_hero');
+ 

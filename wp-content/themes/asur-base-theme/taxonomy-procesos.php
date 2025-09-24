@@ -48,7 +48,7 @@ $ficha_tecnica_id = $ficha_tecnica_term ? $ficha_tecnica_term->term_id : 0;
 
                 <?php
                 // Obtiene los términos de la taxonomía 'tecnologia' para el post actual.
-                $tecnologia_terms = get_the_terms(get_the_ID(), 'familia_producto');
+                $tecnologia_terms = get_the_terms(get_the_ID(), 'procesos');
                 $back_link = '';
                 if ($tecnologia_terms && !is_wp_error($tecnologia_terms)) {
                     $tecnologia_term = array_shift($tecnologia_terms);

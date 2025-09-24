@@ -1,21 +1,32 @@
 <?php
+$cpt_name = "info-block";
 
-$index = $args['index'] ?? 0;
-$block = get_reusable_cpt_block(get_the_ID(), 'info-block', 'selected_info_blocks', $index);
+$selected_blocks = carbon_get_post_meta(get_the_ID(), "selected_info_blocks");
+$block_index = $args['index'] ?? null;
 
+if (!empty($selected_blocks) && $block_index !== null && isset($selected_blocks[$block_index]['id'])) {
+    $block_id = $selected_blocks[$block_index]['id'];
 
+    $block_query = new WP_Query([
+        'post_type'      => $cpt_name,
+        'p'              => $block_id,
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+    ]);
 
-
-if ($block) :
+    if ($block_query->have_posts()) :
+        while ($block_query->have_posts()) : $block_query->the_post();
+        // Carbon Fields data.
             $is_visible = carbon_get_post_meta(get_the_ID(), 'is_visible');
-            $title = get_the_title($block);
-            $content = apply_filters('the_content', $block->post_content);
-            $type = carbon_get_post_meta($block->ID, 'type');            
-            $overTitle  = carbon_get_post_meta($block->ID, 'over_title');
-            $extraTitle = carbon_get_post_meta($block->ID, 'extraTitle');
-            $image       = carbon_get_post_meta($block->ID, 'image');
-            $btnText     = carbon_get_post_meta($block->ID, 'btnText');
-            $btnUrl     = carbon_get_post_meta($block->ID, 'btn_url');
+            $title = get_the_title();
+            $content = get_the_content();
+            $type = carbon_get_post_meta(get_the_ID(), 'type');
+            $title       = get_the_title();
+            $overTitle  = carbon_get_post_meta(get_the_ID(), 'over_title');
+            $extraTitle = carbon_get_post_meta(get_the_ID(), 'extraTitle');
+            $image       = carbon_get_post_meta(get_the_ID(), 'image');
+            $btnText     = carbon_get_post_meta(get_the_ID(), 'btnText');
+            $btnUrl     = carbon_get_post_meta(get_the_ID(), 'btn_url');
             $order = '';
 
             switch ($type) {
@@ -32,7 +43,15 @@ if ($block) :
             }
             ?>
 
+           
+
+
+
 <section class="info-block">
+
+<span class="badge rounded-pill text-bg-danger"><?= $type; ?></span>
+
+
     <div class="container mt-5">        
         <?php if ($type === 'type-3' && $extraTitle && $extraOverTitle) : ?>
             <div class="row mb-20">
@@ -80,6 +99,9 @@ if ($block) :
 
 
             <?php
-        
+        endwhile;
+        wp_reset_postdata();
     endif;
-?>
+} else {
+    echo '<!-- Info block no disponible -->';
+}

@@ -5,13 +5,6 @@ use Carbon_Fields\Field;
 Container::make('post_meta', 'Opciones de Destacado')
     ->where('post_type', '=', 'category-showcase')
     ->add_fields([
-        // Este campo ordena el post completo
-        Field::make('text', 'orden_bloque', 'Orden de Bloque')
-            ->set_attribute('type', 'number')
-            ->set_attribute('min', '1')
-            ->set_help_text('Asigna un número para ordenar este bloque en la página de inicio.'),
-            
-        // Este campo agrupa los elementos internos
         Field::make('complex', 'crb_destacados_agrupados', 'Destacados Agrupados')
             ->set_help_text('Agrega los bloques destacados para esta sección.')
             ->add_fields([
@@ -19,7 +12,7 @@ Container::make('post_meta', 'Opciones de Destacado')
                     ->set_types([
                         [
                             'type'     => 'term',
-                            'taxonomy' => 'industria',
+                            'taxonomy' => 'industrias',
                         ],
                     ]),
                 Field::make('image', 'image', 'Imagen de fondo'),
@@ -27,6 +20,28 @@ Container::make('post_meta', 'Opciones de Destacado')
                     ->set_palette(['#ffffff', '#000000'])
                     ->set_help_text('Este color se usará para el título de la sección.')
                     ->set_width(50),        
-            ]),
+            ])
+            
         
     ]);
+
+
+
+    Container::make('post_meta', 'category showcase Asociado (solo en home)')
+        ->where('post_type', '=', 'page')
+        ->add_fields([
+        Field::make('association', 'selected_category_showcase', 'Seleccionar category showcase')
+            ->set_types([
+                [
+                    'type' => 'post',
+                    'post_type' => 'category-showcase'
+                ]
+            ])
+        ->set_duplicates_allowed( false )
+        ->set_help_text('Selecciona los info blocks que se mostrarán en esta página.')
+    ]);
+
+
+
+
+    

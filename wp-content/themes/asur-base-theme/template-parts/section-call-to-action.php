@@ -1,53 +1,16 @@
 
 <?php
-use Carbon_Fields\Helper\Helper;
 
-$item = new WP_Query([
-    'post_type' => 'call-to-action',
-    'posts_per_page' => -1,
-    'post_status' => 'publish',
-    'orderby' => 'menu_order',
-    'order' => 'ASC',
-]);
+$index = $args['index'] ?? 0;
+$block = get_reusable_cpt_block(get_the_ID(), 'call-to-action', 'selected_call_to_action', $index);
 
-if ($item->have_posts()) : ?>
-
-  <pre class="theme-indicator">WIP: calltoaction</pre>
-
-  
-  <?php
-    $first_visible_post = null;
-    $temp_query = clone $item;
-    
-    while ($temp_query->have_posts()) :
-      $temp_query->the_post();
-      $is_visible = carbon_get_the_post_meta('is_visible');
-      
-      if ($is_visible && is_null($first_visible_post)) {
-        $first_visible_post = get_post();
-        setup_postdata($first_visible_post);
-        $title = get_the_title();
-        $content = get_the_content();
-      }
-    endwhile;
-    
-    wp_reset_postdata();
-    
-    while ($item->have_posts()) : $item->the_post();
-    
-    $is_visible = carbon_get_the_post_meta('is_visible');
-    if (!$is_visible) continue;
-    
-    
-    $title = get_the_title();
-    $content = get_the_content();
+if ($block) :
+    $title = get_the_title($block);    
+    $content = apply_filters('the_content', $block->post_content);
     $btnUrl = carbon_get_the_post_meta('cta_link');
     $btnText = carbon_get_the_post_meta('cta_link_text');
     $icon = 'arrow-right';
-    
-    
-    
-    ?>
+?>
 
 
 <section class="call-to-action my-20 py-20">
@@ -71,27 +34,10 @@ if ($item->have_posts()) : ?>
 </section>
 
 
-<?php endwhile; wp_reset_postdata(); ?>
+
 <?php endif; ?>
 
 
-
-<?php
-
-
-// vars for mock data
-/*
-
-*/
-
-
-$title = 'NUESTRA OFERTA SE AMPLIA  A INTEGRAR UN MAYOR VALOR EN LOS PROCESOS INDUSTRIALES';
-$content = 'Estamos preparados para ser el socio estratégico que su industria necesita, entregamos soluciones integrales en ingeniería, asesoría técnica y suministro de equipos, con un servicio especializado de excelencia apoyado en una sólida red de clase mundial.';
-$btnUrl = 'javascript:void(0);';
-$btnText = 'Ver más';
-$icon = 'arrow-right';
-
-?>
 
 
 

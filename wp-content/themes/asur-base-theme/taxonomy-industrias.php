@@ -4,7 +4,7 @@
     $custom_over_title = carbon_get_term_meta($current_term->term_id, 'taxonomy_custom_over_title');
 
     $child_terms = get_terms([
-        'taxonomy'   => 'linea_producto',
+        'taxonomy'   => 'procesos',
         'hide_empty' => false,
         'meta_query' => [
             [
@@ -16,7 +16,13 @@
     ]);
 ?>
 
+<h1 class="display-1">taxonomy-industria</h1>
+<?=var_dump($child_terms)?>
+
 <?php get_header(); ?>
+
+
+
 
 
 <section class="hero inner" 

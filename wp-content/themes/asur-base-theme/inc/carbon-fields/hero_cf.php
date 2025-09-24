@@ -24,10 +24,18 @@ Container::make('post_meta', 'Campos Hero')
         ->set_width(50),    
     Field::make('image', 'hero_background_image', 'Imagen de fondo')
         ->set_value_type('url'),
-    Field::make( 'select', 'page_type', 'Tipo de Página')
-        ->add_options( array(
-        'home' => 'Home',
-        'inner' => 'Inner'),
-        )
-        ->set_help_text('en donde se verá el hero.'), 
+]);
+
+Container::make('post_meta', 'Hero Asociado')
+->where('post_type', '=', 'page')
+->add_fields([
+    Field::make('association', 'selected_hero', 'Seleccionar Hero')
+        ->set_types([
+            [
+                'type' => 'post',
+                'post_type' => 'hero'
+            ]
+        ])
+        ->set_max(1)
+        ->set_help_text('Selecciona el hero que se mostrará en esta página.')
 ]);
