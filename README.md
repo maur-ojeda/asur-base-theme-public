@@ -8,7 +8,7 @@ Este entorno Docker provee una instalación lista para desarrollo local de WordP
 
 - Docker
 - Docker Compose
-- (Opcional) Make o bash para comandos rápidos
+- bash para comandos rápidos
 
 ---
 
@@ -57,20 +57,22 @@ max_input_time = 300
 
 🏁 Uso
 Levantar los servicios:
-bash
-docker-compose --env-file .env up -d
+```bash
+docker-compose up -d
+```
 
 Ver logs:
-bash
-
+```bash
 docker-compose logs -f
+```
 
 Detener los servicios:
-bash
+```bash
 docker-compose down
+```
 
 📁 Estructura del proyecto
-bash
+```bash
 .
 ├── docker-compose.yml
 ├── .env
@@ -78,88 +80,49 @@ bash
 ├── config/
 │   └── php.ini           # Configuración PHP personalizada
 └── html/                 # (opcional) Sobrescribe todo el core WP (⚠️ usar con precaución)
+```
 
 🔐 Acceso a la base de datos
-Host: localhost
-
-Puerto: ${MYSQL_PORT} (default 33061)
-
-Usuario: wordpress
-
-Contraseña: wordpress
-
-Base de datos: wordpress
+- **Host:** `localhost`
+- **Puerto:** `${MYSQL_PORT}` (default 33061)
+- **Usuario:** `wordpress`
+- **Contraseña:** `wordpress`
+- **Base de datos:** `wordpress`
 
 Puedes conectarte con clientes como DBeaver o TablePlus para depurar la base de datos.
 
 
 
 🧹 Notas
-No usar ./html vacío, ya que sobreescribirá los archivos core de WordPress.
-
-Las credenciales y puertos son solo para desarrollo local.
+- No usar `./html` vacío, ya que sobreescribirá los archivos core de WordPress.
+- Las credenciales y puertos son solo para desarrollo local.
 
 
 
 📦 Empaquetado del tema
-Este proyecto incluye un script llamado package-theme.sh que permite generar un archivo .zip con los archivos necesarios para subir e instalar el tema directamente desde el administrador de WordPress.
+Este proyecto incluye un script llamado `package-theme.sh` que permite generar un archivo `.zip` con los archivos necesarios para subir e instalar el tema directamente desde el administrador de WordPress.
 
 🧾 ¿Qué hace el script?
-Comprime el contenido del theme en un archivo asur-base-theme.zip.
+Comprime el contenido del theme en un archivo `asur-base-theme.zip`.
 
-Excluye archivos innecesarios como:
-
-.git/, node_modules/, dist/, .vscode/, .DS_Store, archivos temporales, etc.
-
-Archivos de desarrollo como package.json, package-lock.json, .gitignore, y scripts .sh.
+Excluye archivos y directorios de desarrollo como:
+- `.git/`, `node_modules/`, `dist/`, `.vscode/`
+- `.DS_Store`, `*.log`, `*.sh`, `*.zip`
+- `package.json`, `package-lock.json`, `.gitignore`
 
 ▶️ Cómo usarlo
 Desde la raíz del theme, ejecuta:
-
+```bash
 ./package-theme.sh
-Esto generará el archivo asur-base-theme.zip que puedes subir directamente desde el administrador de WordPress (Apariencia → Temas → Añadir nuevo → Subir tema).
+```
+Esto generará el archivo `asur-base-theme.zip` que puedes subir directamente desde **Apariencia → Temas → Añadir nuevo → Subir tema**.
 
-💡 Asegúrate de haber generado previamente los assets finales (CSS, JS) y de que vendor/ esté incluido si usas Composer con Carbon Fields.
+💡 **Importante:** Asegúrate de que `vendor/` esté incluido si usas Composer con Carbon Fields.
 
 ✅ TODOs
- Automatizar la limpieza y generación de assets (CSS/JS) antes del empaquetado, usando herramientas como Vite, Webpack o npm scripts.
+- Automatizar la limpieza y generación de assets (CSS/JS) antes del empaquetado, usando herramientas como Vite, Webpack o npm scripts.
 
 
 📌 Próximos pasos sugeridos
-Integrar phpMyAdmin (servicio adicional)
-
-Añadir Xdebug para debugging en VSCode
-
-
-
-🎯 Sección Hero (Custom Post Type + Carbon Fields)
-La sección principal del sitio (Hero) es administrable desde el panel de WordPress mediante un CPT personalizado llamado Hero.
-
-🧱 ¿Qué contiene?
-Cada entrada del CPT Hero permite configurar:
-
-Frase principal (headline)
-
-Bajada de texto
-
-Texto y enlace de dos botones (opcional)
-
-Imagen de fondo de pantalla completa
-
-🧩 ¿Cómo se usa?
-Ve a Hero > Añadir nuevo.
-
-Completa los campos disponibles (texto, enlaces, imagen de fondo).
-
-Solo se mostrará el último Hero publicado en el home (modo OnePage).
-
-🔌 Campos creados con Carbon Fields
-Los campos personalizados se cargan desde:
-
-/inc/carbon-fields/hero-fields.php
-⚠️ Requisitos
-Carbon Fields debe estar instalado vía Composer y cargado correctamente desde functions.php:
-
-require_once __DIR__ . '/vendor/autoload.php';
-\Carbon_Fields\Carbon_Fields::boot();
-```
+- Integrar phpMyAdmin (servicio adicional)
+- Añadir Xdebug para debugging en VSCode
