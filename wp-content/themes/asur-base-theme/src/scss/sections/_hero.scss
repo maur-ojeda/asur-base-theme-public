@@ -58,7 +58,7 @@ $block: "hero";
 }
 
 .#{$block}.inner {
-  height: 640px;
+  height: 340px;
 
   // Tablet
   @include media-breakpoint-down(lg) {

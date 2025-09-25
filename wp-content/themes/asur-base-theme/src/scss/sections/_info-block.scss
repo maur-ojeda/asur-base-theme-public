@@ -1,6 +1,5 @@
 .info-block {
-  margin-top: 7.75rem;
-  margin-bottom: 12.5rem;
+  @extend .m-block;
 
   .title,
   .over-title {
@@ -14,62 +13,6 @@
     }
     p {
       font-size: 1.125rem !important;
-    }
-  }
-
-  .img-krom-wrapper {
-    position: relative;
-    box-sizing: content-box;
-    &::after {
-      content: "";
-      @extend .d-block;
-      @extend .z-1;
-      background-color: $primary;
-      position: absolute;
-      border-radius: 0.125rem;
-    }
-  }
-
-  .img-krom-wrapper {
-    &.type-1 {
-      &::after {
-        top: 15%;
-        left: -1.25rem;
-        width: 2.5rem;
-        height: 45%;
-      }
-    }
-    &.type-2 {
-      &::after {
-        top: 15%;
-        right: -1.25rem;
-        width: 2.5rem;
-        height: 45%;
-      }
-    }
-
-    &.type-3 {
-      &::after {
-        top: -1.25rem;
-        right: -1.25rem;
-        width: 45%;
-        height: 2.5rem;
-      }
-    }
-
-    &.type-4 {
-      &::after {
-        display: none !important;
-      }
-    }
-
-    &.type-5 {
-      &::after {
-        top: -1.25rem;
-        left: -1.25rem;
-        width: 45%;
-        height: 2.5rem;
-      }
     }
   }
 }

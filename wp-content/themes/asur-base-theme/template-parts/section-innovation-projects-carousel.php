@@ -2,8 +2,9 @@
 <?php
 use Carbon_Fields\Helper\Helper;
 //ingresar nombre de post
-$post_name="";
 
+
+$post_name="innovacion";
 
 $item = new WP_Query([
     'post_type' => $post_name,
@@ -14,86 +15,68 @@ $item = new WP_Query([
 ]);
 
 
-if ($item->have_posts()) : ?>
+if ($item->have_posts()):?>
 
-<?php
-    $first_visible_post = null;
-    $temp_query = clone $item;
-    
-    while ($temp_query->have_posts()) :
-      $temp_query->the_post();
-      $is_visible = carbon_get_the_post_meta('is_visible');
-      
-      if ($is_visible && is_null($first_visible_post)) {
-        $first_visible_post = get_post();
-        setup_postdata($first_visible_post);
-        $title = get_the_title();
-        $content = get_the_content();
-      }
-    endwhile;
-    
-    wp_reset_postdata();
-    
-    while ($item->have_posts()) : $item->the_post();
-    
-    $is_visible = carbon_get_the_post_meta('is_visible');
-    if (!$is_visible) continue;
-    
-    $text = carbon_get_the_post_meta('fp_link_text');
-    $link = carbon_get_the_post_meta('fp_link');
-    $image = carbon_get_the_post_meta('fp_image');
-    $info = carbon_get_the_post_meta('fp_info');
-    $overtitle = carbon_get_the_post_meta('fp_over_title');
-    
-    ?>
+   <div class="carousel-innovaciones swiper"> <!-- 👈 contenedor de tu carrusel -->
+        <div class="swiper-wrapper">
 
+            <?php while ($item->have_posts()): $item->the_post(); ?>
+                <div class="swiper-slide">
+                    <article class="innovacion-card">
+                        <h3><?= esc_html(get_the_title()); ?></h3>
 
+                        <?php if (has_post_thumbnail()): ?>
+                            <img src="<?= esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium')); ?>" alt="<?= esc_attr(get_the_title()); ?>">
+                        <?php endif; ?>
 
+                        <div class="excerpt">
+                            <?= wp_trim_words(get_the_content(), 20, '...'); ?>
+                        </div>
 
-
-<section id="featured-proyect">
-  <div class="container">
-            <div class="row align-items-center proyecto-section">
-                <div class="col-lg-5 col-md-5 mb-4 mb-md-0">
-                    <h6 class="text-primary fw-semibold" data-aos="fade" data-aos-delay="800"><?= esc_html($overtitle); ?></h6>
-                    <h3 class="display-6" data-aos="fade-up" data-aos-delay="400"><?= esc_html($title); ?></h3>
-                    <p class="text-muted" data-aos="fade-up" data-aos-delay="600">
-                        <?= esc_html(strip_tags($content)); ?> 
-                    </p>
-                    <a href="<?= $link; ?>" class="btn rounded-pill btn-primary" data-aos="fade-up" data-aos-delay="600"> <?= $text; ?></a>
+                        <a href="<?= esc_url(get_permalink()); ?>" class="btn">Ver más</a>
+                    </article>
                 </div>
-                <div class="offset-md-2 col-lg-5 col-md-5">
-                    <div class="imagen-container" >
-                        <img src="<?php echo esc_url(ensure_https($image)); ?>" 
-                             alt="imagen" 
-                             class="imagen-principal"
-                             data-aos="fade-left" data-aos-delay="500"
-                             >
-                        
-                             <div class="info-overlay" data-aos="fade" data-aos-delay="1000">
-                            <p><?= esc_html($info); ?></p>
-                            </div>
-                        
-                    </div>
-                </div>
-            </div>
+            <?php 
+        endwhile; ?>
+
         </div>
-</section>
+        <!-- Botones Swiper -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 
-<?php endwhile; wp_reset_postdata(); ?>
+
+
+
+
+
+
+
 <?php endif; ?>
 
 
 
-<div class="container py-20 my-20">
+
+
+
+
+
+
+
+
+
+
+
+<div class="m-block">
     <div class="row">
-        <div class="col-12 mb-4">
-            <h5 class="text-secondary text-uppercase">Proyectos</h5>
-            <h1 class="text-dark">INNOVACIÓN</h1>
+        <div class="col-12 mb-12">
+            <h6 class="over-title" data-aos="fade-up" data-aos-delay="200">INNOVACIÓN</h6>
+            <h2 class="title" data-aos="fade-up" data-aos-delay="400">OTROS PROYECTOS</h2>
         </div>
     </div>
 
-    <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="projectsCarousel" class="carousel slide img-krom-wrapper type-8 " data-bs-ride="carousel">
         <div class="carousel-inner">
 
             <div class="carousel-item active">
