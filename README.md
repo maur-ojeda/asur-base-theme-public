@@ -55,6 +55,24 @@ max_execution_time = 300
 max_input_time = 300
 
 
+📦 Instalación de Dependencias
+Este tema utiliza `composer` para gestionar las dependencias de PHP (como Carbon Fields) y `npm` para las dependencias de frontend (como estilos y scripts).
+
+### Composer (PHP)
+Asegúrate de tener Composer instalado. Luego, desde la raíz del tema, ejecuta:
+```bash
+composer install
+```
+Esto instalará Carbon Fields y otras librerías necesarias.
+
+### Node.js (Frontend)
+Asegúrate de tener Node.js y `npm` instalados. Luego, desde la raíz del tema, ejecuta:
+```bash
+npm install
+```
+Esto instalará las dependencias de desarrollo para compilar assets como CSS y JavaScript.
+
+
 🏁 Uso
 Levantar los servicios:
 ```bash
